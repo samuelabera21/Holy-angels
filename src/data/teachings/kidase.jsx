@@ -31,18 +31,147 @@
 
 
 
+// const kidase = {
+//   id: "kidase",
+//   title: "ቅዳሴ",
+//   description: "Ethiopian Orthodox Church Kidase Teaching",
+
+//   types: [
+//     {
+//       id: "zewetr",
+//       title: "ዘወትር ቅዳሴ",
+//       image: "/kidase/zewetr/zewetr.jpg",
+
+//       slides: [
+//     {
+//       id: 1,
+//       image: "/kidase/zewetr/slides/01.jpg",
+//       audio: "/kidase/zewetr/audio/01.mp3",
+//       caption: "መጀመሪያ ቅዳሴ"
+//     },
+//     {
+//       id: 2,
+//       image: "/kidase/zewetr/slides/02.jpeg",
+//       audio: "/kidase/zewetr/audio/02.mp3",
+//       caption: "ሁለተኛ ቅዳሴ"
+//     },
+//     {
+//       id: 3,
+//       image: "/kidase/zewetr/slides/03.jpg",
+//       audio: "/kidase/zewetr/audio/03.mp3",
+//       caption: "ሶስተኛ ቅዳሴ"
+//     }
+
+//   ]
+//     },
+
+//     {
+//       id: "mariam",
+//       title: "ማርያም ቅዳሴ",
+//       image: "/kidase/maryam/maryam.jpg",
+
+//         slides: [
+//     {
+//       id: 1,
+//       image: "/kidase/zewetr/slides/01.jpg",
+//       audio: "/kidase/zewetr/audio/01.mp3",
+//       caption: "መጀመሪያ ቅዳሴ"
+//     },
+//     {
+//       id: 2,
+//       image: "/kidase/zewetr/slides/02.jpeg",
+//       audio: "/kidase/zewetr/audio/02.mp3",
+//       caption: "ሁለተኛ ቅዳሴ"
+//     },
+//     {
+//       id: 3,
+//       image: "/kidase/zewetr/slides/03.jpg",
+//       audio: "/kidase/zewetr/audio/03.mp3",
+//       caption: "ሶስተኛ ቅዳሴ"
+//     }
+//   ]
+//     }
+//   ]
+// };
+
+// export default kidase;
+
+
+
+
 const kidase = {
   id: "kidase",
   title: "ቅዳሴ",
-  description: "Ethiopian Orthodox Church Kidase Teaching",
 
-  types: [
-    {
-      id: "zewetr",
-      title: "ዘወትር ቅዳሴ",
-      image: "/kidase/zewetr/zewetr.jpg",
+  languages: {
+    geez: {
+      title: "ግዕዝ",
+      types: [
+        {
+          id: "zewetr",
+          title: "ዘወትር ቅዳሴ",
+          image: "/kidase/zewetr/zewetr.jpg",
+          slides: [
+        {
+      id: 1,
+      image: "/kidase/zewetr/slides/01.jpg",
+      audio: "/kidase/zewetr/audio/01.mp3",
+      caption: "መጀመሪያ ቅዳሴ"
+       },
+      {
+      id: 2,
+      image: "/kidase/zewetr/slides/02.jpeg",
+      audio: "/kidase/zewetr/audio/02.mp3",
+      caption: "ሁለተኛ ቅዳሴ"
+      },
+      {
+      id: 3,
+      image: "/kidase/zewetr/slides/03.jpg",
+      audio: "/kidase/zewetr/audio/03.mp3",
+      caption: "ሶስተኛ ቅዳሴ"
+        },
+        ]
+        }
+        ,
 
-      slides: [
+
+
+        {
+          id: "mariam",
+          title: "ማርያም ቅዳሴ",
+          image: "/kidase/mariam/mariam.jpg",
+          slides: [
+        {
+      id: 1,
+      image: "/kidase/mariam/slides/01.jpg",
+      audio: "/kidase/mariam/audio/01.mp3",
+      caption: "መጀመሪያ ቅዳሴ"
+       },
+      {
+      id: 2,
+      image: "/kidase/mariam/slides/02.jpeg",
+      audio: "/kidase/mariam/audio/02.mp3",
+      caption: "ሁለተኛ ቅዳሴ"
+      },
+      {
+      id: 3,
+      image: "/kidase/mariam/slides/03.jpg",
+      audio: "/kidase/mariam/audio/03.mp3",
+      caption: "ሶስተኛ ቅዳሴ"
+        },
+        ]
+        }
+      ]
+    },
+
+    ezel: {
+      title: "ዕዝል",
+      types: [
+        {
+          id: "mariam",
+          title: "ማርያም ቅዳሴ",
+          image: "/kidase/maryam/maryam.jpg",
+          slides: [
     {
       id: 1,
       image: "/kidase/zewetr/slides/01.jpg",
@@ -61,16 +190,15 @@ const kidase = {
       audio: "/kidase/zewetr/audio/03.mp3",
       caption: "ሶስተኛ ቅዳሴ"
     }
-
   ]
-    },
+        },
 
-    {
-      id: "mariam",
-      title: "ማርያም ቅዳሴ",
-      image: "/kidase/maryam/maryam.jpg",
+        {
+          id: "zewetr",
 
-        slides: [
+          title: "ዘወትር ቅዳሴ",
+          image: "/kidase/zewetr/zewetr.jpg",
+          slides: [
     {
       id: 1,
       image: "/kidase/zewetr/slides/01.jpg",
@@ -90,13 +218,13 @@ const kidase = {
       caption: "ሶስተኛ ቅዳሴ"
     }
   ]
+        }
+      ]
     }
-  ]
+  }
 };
 
 export default kidase;
-
-
 
 
 
