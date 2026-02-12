@@ -9,6 +9,7 @@ import KidaseSlideDetail from "./pages/KidaseSlideDetail";
 import KidaseLanguages from "./pages/KidaseLanguages";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollUpButton from "./components/ScrollUpButton";
+import HolyAngelDetail from "./pages/HolyAngelDetail";
 
 
 
@@ -20,7 +21,7 @@ import ScrollUpButton from "./components/ScrollUpButton";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
+import HolyAngels from "./pages/HolyAngels";
 import History from "./pages/History";
 import NotFound from "./pages/NotFound";
 import Videos from "./pages/Videos";
@@ -38,7 +39,9 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/HolyAngels" element={<HolyAngels />} />
+          <Route path="/holy-angels/:id" element={<HolyAngelDetail />} />
+          
           <Route path="/videos" element={<Videos />} />
           <Route path="/teachings" element={<Teachings />} />
 

@@ -1,166 +1,126 @@
 .history-most {
-  padding: 6rem 2rem;
-  background: #f7f7f7;
+  padding: 7rem 2rem;
+  background: #0c0c0c;
+  color: #fff;
 }
 
 .history-most h2 {
   text-align: center;
-  font-size: 2.4rem;
-  margin-bottom: 3.5rem;
+  font-size: 3rem;
+  margin-bottom: 5rem;
 }
 
-/* Grid */
-.most-grid {
+.most-modern {
   max-width: 1200px;
   margin: 0 auto;
-
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
+  gap: 6rem;
 }
 
-/* Card */
-.most-card {
-  background: white;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
-  transition: transform 0.4s ease;
+/* Split row */
+.split-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(60px);
+  animation: reveal 1s ease forwards;
 }
 
-.most-card:hover {
-  transform: translateY(-10px);
+.split-card.reverse {
+  direction: rtl;
+}
+.split-card.reverse > * {
+  direction: ltr;
+}
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Media */
-.most-media {
-  position: relative;
-  height: 220px;
-  background: #000;
+.split-media {
+  height: 320px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
-.most-media img,
-.most-media video {
+.split-media img,
+.split-media video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(1.05);
+  transition: transform 0.8s ease;
 }
 
-/* Rank */
-.rank-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: rgba(0, 0, 0, 0.7);
-  color: #ffd56a;
-  padding: 0.4rem 0.7rem;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 0.85rem;
+.split-card:hover .split-media img,
+.split-card:hover .split-media video {
+  transform: scale(1.15);
 }
 
-/* Content */
-.most-content {
-  padding: 1.6rem;
+/* Text */
+.split-content {
+  padding: 1rem;
 }
 
-.most-content h3 {
-  font-size: 1.25rem;
+.split-rank {
+  display: inline-block;
+  background: #ffd56a;
+  color: #000;
+  padding: 0.35rem 0.7rem;
+  border-radius: 10px;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.split-content h3 {
+  font-size: 2rem;
   margin-bottom: 0.4rem;
 }
 
-.most-content .location {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 0.8rem;
+.split-content .location {
+  color: #aaa;
+  margin-bottom: 1rem;
 }
 
-.most-content .significance {
-  font-size: 0.95rem;
-  color: #444;
-  line-height: 1.5;
+.split-content .significance {
+  line-height: 1.7;
+  font-size: 1.05rem;
+  opacity: 0.9;
 }
 
-
-
-/* Media */
-.most-media {
-  position: relative;
-  height: 260px;
+/* Mobile */
+@media (max-width: 900px) {
+  .split-card {
+    grid-template-columns: 1fr;
+  }
+}
+/* Hidden description container */
+.desc-wrap {
+  max-height: 0;
   overflow: hidden;
-  background: #000;
-}
-
-.most-media img,
-.most-media video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-/* Zoom image on hover */
-.most-card:hover img,
-.most-card:hover video {
-  transform: scale(1.08);
-}
-
-/* Overlay */
-.most-overlay {
-  position: absolute;
-  inset: 0;
-  padding: 1.6rem;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.85),
-    rgba(0, 0, 0, 0.2),
-    transparent
-  );
-
-  color: #fff;
-
+  transition: max-height 0.6s ease, opacity 0.5s ease;
   opacity: 0;
-  transition: opacity 0.4s ease;
 }
 
-/* Show overlay on hover */
-.most-card:hover .most-overlay {
+/* Reveal when hovering whole row */
+.split-card:hover .desc-wrap {
+  max-height: 200px;
   opacity: 1;
 }
 
-/* Text styles */
-.most-overlay h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.3rem;
+/* Smooth text rise */
+.significance {
+  transform: translateY(10px);
+  transition: transform 0.5s ease;
 }
 
-.most-overlay .location {
-  font-size: 0.9rem;
-  opacity: 0.8;
-  margin-bottom: 0.6rem;
-}
-
-.most-overlay .significance {
-  font-size: 0.95rem;
-  line-height: 1.45;
-}
-
-/* Rank badge stays above everything */
-.rank-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  z-index: 3;
-
-  background: rgba(0, 0, 0, 0.7);
-  color: #ffd56a;
-  padding: 0.4rem 0.7rem;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 0.85rem;
+.split-card:hover .significance {
+  transform: translateY(0);
 }

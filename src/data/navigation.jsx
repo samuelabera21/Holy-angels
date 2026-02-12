@@ -6,5 +6,5 @@ export const navLinks = [
   { label: "Teachings", path: "/teachings" },
   { label: "History", path: "/History" },
   { label: "About", path: "/about" },
-  { label: "Contact", path: "/contact" },
+  { label: "HolyAngels", path: "/HolyAngels" },
 ];

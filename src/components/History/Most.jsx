@@ -79,6 +79,11 @@
 
 
 
+
+
+
+
+
 import mostOrthodoxChurches from "../../data/history/mostOrthodoxChurches";
 import "../../styles/history/Most.css";
 
@@ -87,82 +92,48 @@ function Most() {
     <section className="history-most">
       <h2>Most Important Orthodox Churches</h2>
 
-      <div className="most-grid">
-        {mostOrthodoxChurches.map((church) => (
-          <article className="most-card" key={church.id}>
-            <div className="most-media">
-              {church.media.type === "video" ? (
-<video
-  src={church.media.src}
-  poster={church.media.poster}
-  autoPlay
-  muted
-  loop
-  playsInline
-/>
-              ) : (
-                <img src={church.media.src} alt={church.name} />
-              )}
-
-              <span className="rank-badge">#{church.rank}</span>
-            </div>
-
-            <div className="most-content">
-              <h3>{church.name}</h3>
-              <p className="location">{church.location}</p>
-              <p className="significance">{church.significance}</p>
-            </div>
-          </article>
-        ))}
+      <div className="most-modern">
+  {mostOrthodoxChurches.map((church, i) => (
+    <article
+      className={`split-card ${i % 2 === 1 ? "reverse" : ""}`}
+      key={church.id}
+    >
+      {/* MEDIA */}
+      <div className="split-media">
+        {church.media.type === "video" ? (
+          <video
+            src={church.media.src}
+            poster={church.media.poster}
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        ) : (
+          <img src={church.media.src} alt={church.name} />
+        )}
       </div>
+
+      {/* CONTENT */}
+   <div className="split-content">
+  <span className="split-rank">#{church.rank}</span>
+  <h3>{church.name}</h3>
+  <p className="location">{church.location}</p>
+
+  <div className="desc-wrap">
+    <p className="significance">{church.significance}</p>
+  </div>
+</div>
+
+    </article>
+  ))}
+</div>
+
     </section>
   );
 }
 
+
 export default Most;
 
 
-
-// import mostOrthodoxChurches from "../../data/history/mostOrthodoxChurches";
-// import "../../styles/history/Most.css";
-
-// function Most() {
-//   return (
-//     <section className="history-most">
-//       <h2>Most Important Orthodox Churches</h2>
-
-//       <div className="most-grid">
-//         {mostOrthodoxChurches.map((church) => (
-//           <article className="most-card" key={church.id}>
-//   <div className="most-media">
-//     {church.media.type === "video" ? (
-//       <video
-//         src={church.media.src}
-//         poster={church.media.poster}
-//         autoPlay
-//         muted
-//         loop
-//         playsInline
-//       />
-//     ) : (
-//       <img src={church.media.src} alt={church.name} />
-//     )}
-
-//     <span className="rank-badge">#{church.rank}</span>
-
-//     {/* Overlay content */}
-//     <div className="most-overlay">
-//       <h3>{church.name}</h3>
-//       <p className="location">{church.location}</p>
-//       <p className="significance">{church.significance}</p>
-//     </div>
-//   </div>
-// </article>
-
-//         ))}
-//       </div>
-//     </section>
-//   );
-// }
-
-// export default Most;
