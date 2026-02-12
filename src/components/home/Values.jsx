@@ -160,15 +160,40 @@ function Values() {
 
       {/* Content */}
       <div className="values-content">
-        <h2>ቤተክርስቲያን</h2>
+        <div className="values-panel">
+          <h2>ቤተክርስቲያን</h2>
 
-        <div className="values-text-column">
-          <p>እምነት በእግዚአብሔር</p>
-          <p>ተስፋ በመድኃኒታችን</p>
-          <p>ፍቅር ለሰው ሁሉ</p>
-          <p>ቃል እና ቅዱስ ሥርዓት</p>
-          <p>እውነት እና ትሕትና</p>
-          <p>እውነት እና ትሕትና</p>
+          <div className="values-text-column">
+            <div className="value-card">
+              <h3>እምነት</h3>
+              <p>እምነት በእግዚአብሔር እና በእርስ በርስ እርምጃ</p>
+            </div>
+
+            <div className="value-card">
+              <h3>ተስፋ</h3>
+              <p>ተስፋ እና መንፈሳዊ ምክር የሕይወት መንገድ</p>
+            </div>
+
+            <div className="value-card">
+              <h3>ፍቅር</h3>
+              <p>ፍቅር ለሰው ሁሉ የማካተት ሥርዓት</p>
+            </div>
+
+            <div className="value-card">
+              <h3>ቃል</h3>
+              <p>ቃል እና ቅዱስ ሥርዓት የእምነት መሠረት</p>
+            </div>
+
+            <div className="value-card">
+              <h3>እውነት</h3>
+              <p>እውነት እና ትሕትና በአካል እና በልብ</p>
+            </div>
+
+            <div className="value-card">
+              <h3>አክብር</h3>
+              <p>ክብር ለአምላክ እና ለሰዎች</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

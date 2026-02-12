@@ -1,149 +1,202 @@
 /* ===============================
-   EVENTS SECTION WITH VIDEO
+   EVENTS SECTION - ORTHODOX / HOLY LOOK
    =============================== */
 
 .events {
   position: relative;
   min-height: 100vh;
-  padding: 6rem 2rem;
+  padding: 0; /* hero-style full height */
 
   overflow: hidden;
   text-align: center;
+  background: black; /* match Holy slider background */
 }
 
-/* ===============================
-   BACKGROUND VIDEO
-   =============================== */
+/* BACKGROUND VIDEO (full-bleed) */
+/* remove background-video rules (Events now uses images per-section) */
 
-.events-bg-video {
-  position: absolute;
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-
-  z-index: 0;
-}
-
-/* ===============================
-   OVERLAY
-   =============================== */
-
-.events-overlay {
-  position: absolute;
-  inset: 0;
-
-  background: linear-gradient(
-    rgba(0, 0, 0, 0.55),
-    rgba(0, 0, 0, 0.75)
-  );
-
-  z-index: 1;
-}
-
-/* ===============================
-   CONTENT
-   =============================== */
-
+/* HERO CONTENT - centered like Holy slider */
 .events-content {
-  position: relative;
+  position: relative; /* place at top center of the section */
   z-index: 2;
-
-  max-width: 1200px;
-  margin: 0 auto;
+  text-align: center;
+  color: #8b0000;
+  max-width: 900px;
+  padding: 20px;
+  margin: 28px auto 0;
 }
 
 .events-content h2 {
-  font-size: clamp(2rem, 4vw, 2.6rem);
-  margin-bottom: 4rem;
-
-  color: #f5f5f5;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-size: 3rem;
+  margin-bottom: 10px;
+  font-weight: 700;
 }
 
-/* ===============================
-   EVENT GRID
-   =============================== */
+.events-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: inherit;
+}
+
+.events-content .subtitle {
+  color: #f5d67b; /* gold accent like Holy */
+  font-size: 1.6rem;
+  margin-top: 0.4rem;
+}
+
+/* EVENT GRID - sits below the hero in a light container */
+.event-list-wrap {
+  position: relative;
+  z-index: 2;
+  margin-top: calc(100vh - 120px); /* bring cards into view below hero */
+  background: #f5f1e6; /* Holy page cream */
+  padding: 3rem 2rem 6rem;
+}
 
 .event-list {
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2.5rem;
 }
 
-/* ===============================
-   EVENT CARD
-   =============================== */
+/* Events container using alternating image + description sections */
+.events-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem 6rem;
+  background: #f5f1e6;
+  border-top: none; /* avoid visible hairline with preceding section */
+}
 
-.event-card {
-  padding: 2.5rem 2rem;
-  border-radius: 22px;
 
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(14px);
-
-  border: 1px solid rgba(255, 255, 255, 0.25);
-
-  color: #f2f2f2;
-
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-
+/* Body layout similar to HolyDetail */
+.events-section {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  gap: 40px;
+  margin-bottom: 3.5rem;
+  align-items: flex-start;
 }
 
-/* Hover */
-.event-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+.events-section.reverse {
+  flex-direction: row-reverse;
 }
 
-/* Title */
-.event-card h3 {
-  font-size: 1.4rem;
+/* IMAGE SIDE - sticky like HolyDetail */
+.events-section .image-wrapper {
+  flex: 0 0 340px;
+  max-width: 100%;
+  position: sticky;
+  top: 120px; /* below navbar */
+  align-self: flex-start;
+  box-sizing: border-box;
+}
+
+.events-section .image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  object-fit: contain; /* never crop */
+  background: #fff;
+}
+
+/* TEXT SIDE */
+.events-section {
+  /* ensure each section fills enough vertical space so image stays visible
+     and the text column can scroll independently */
+  min-height: 70vh;
+}
+
+.events-desc {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 18px;
+  line-height: 2;
+  color: #333;
+  padding-right: 12px;
+  text-align: justify;
+
+  /* lock height so only text scrolls (keeps image fixed) */
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.events-desc h3 {
+  font-size: 28px;
+  color: #8b0000;
+  margin-bottom: 8px;
+}
+
+.events-desc p {
+  margin-bottom: 1rem;
+}
+
+.events-desc span {
+  display: block;
   font-weight: 600;
-  color: #ffffff;
+  color: #b8860b;
 }
 
-/* Description */
-.event-card p {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  opacity: 0.9;
+/* Read more link style */
+.read-more {
+  display: inline-block;
+  margin-top: 18px;
+  color: #4b2b7f;
+  text-decoration: underline;
 }
 
-/* Date */
-.event-card span {
-  margin-top: auto;
-  font-size: 0.9rem;
-  font-weight: 500;
-
-  color: #d4af37;
+/* scrollbar (light) */
+.events-desc::-webkit-scrollbar {
+  width: 10px;
+}
+.events-desc::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.12);
+  border-radius: 6px;
 }
 
-/* ===============================
-   RESPONSIVE
-   =============================== */
+/* make font family match Holy detail */
+.events-container, .events-desc {
+  font-family: "Noto Sans Ethiopic", sans-serif;
+}
 
+/* RESPONSIVE - fall back to stacked layout */
+@media (max-width: 900px) {
+  .events-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .events-section .image-wrapper {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto 10px auto;
+    position: static;
+  }
+
+  .events-desc {
+    font-size: 16px;
+    padding-right: 0;
+  }
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .events {
-    padding: 4.5rem 1.5rem;
+    min-height: 70vh;
   }
 
-  .event-list {
-    gap: 2rem;
+  .events-content h2 {
+    font-size: 2rem;
+  }
+
+  .event-list-wrap {
+    margin-top: calc(70vh - 80px);
+    padding: 2rem 1rem 4rem;
   }
 }
-.event-card:hover{
-    background: #d4af37; /* gold tone */
-     transform: translateY(-3px);
-    transition: all 0.3s ease;
-    span {
-      color:white;
-    }
-  }

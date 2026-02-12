@@ -21,6 +21,7 @@
   text-align: center;
 
   overflow: hidden;
+  border-bottom: none; /* ensure no stray separator line appears */
 }
 
 /* Subtle decorative glow */

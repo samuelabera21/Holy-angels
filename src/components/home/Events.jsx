@@ -34,79 +34,42 @@
 
 
 import "../../styles/Events.css";
+import events from "../../data/events";
+import { Link } from "react-router-dom";
 
 function Events() {
   return (
     <section className="events">
-      {/* 🎥 BACKGROUND VIDEO */}
-      <video
-        className="events-bg-video"
-        src="/home/events.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-      />
-
-      {/* 🌫 OVERLAY */}
-      <div className="events-overlay" />
-
-      {/* 📅 CONTENT */}
+      {/* HERO TITLE */}
       <div className="events-content">
         <h2>የቤተ ክርስቲያን በዓላት</h2>
+        <p className="subtitle">የቤተ ክርስቲያን ታላቅ በዓላት እና ክብር</p>
+      </div>
 
-        <div className="event-list">
-          <article className="event-card">
-            <h3>አዲስ ዓመት</h3>
-            <p>የኢትዮጵያ አዲስ ዓመት በቤተ ክርስቲያን የሚከበር መንፈሳዊ በዓል</p>
-            <span>መስከረም ፩</span>
-          </article>
+      {/* EVENTS - modern holy style: image on one side, description on the other */}
+      <div className="events-container">
+        {events.map((event, index) => (
+          <div
+            key={event.id}
+            className={`events-section ${index % 2 === 0 ? "normal" : "reverse"}`}
+          >
+            <div className="image-wrapper">
+              <img src={event.image} alt={event.title} />
+            </div>
 
-          <article className="event-card">
-            <h3>መስቀል</h3>
-            <p>የመስቀለ ክርስቶስ መገኘትን የሚያስታውስ በዓል</p>
-            <span>መስከረም ፲፯</span>
-          </article>
+            <div className="events-desc">
+              <h3>{event.title}</h3>
+              <p>{event.desc}</p>
+              <span>{event.date}</span>
 
-          <article className="event-card">
-            <h3>ገና</h3>
-            <p>የጌታችን ኢየሱስ ክርስቶስ ልደት</p>
-            <span>ታህሳስ ፪፱</span>
-          </article>
-
-          <article className="event-card">
-            <h3>ጥምቀት</h3>
-            <p>የጌታችን ጥምቀት በዮርዳኖስ ወንዝ</p>
-            <span>ጥር ፲፩</span>
-          </article>
-
-          <article className="event-card">
-            <h3>ሆሳዕና</h3>
-            <p>ጌታችን ወደ ኢየሩሳሌም መግባቱ</p>
-            <span>ንሳን</span>
-          </article>
-
-          <article className="event-card">
-            <h3>ፋሲካ</h3>
-            <p>የትንሣኤ በዓል — የሞት ድል</p>
-            <span>ሚያዝያ</span>
-          </article>
-
-
-          <article className="event-card">
-            <h3>ፋሲካ</h3>
-            <p>የትንሣኤ በዓል — የሞት ድል</p>
-            <span>ሚያዝያ</span>
-          </article>
-
-
-
-          <article className="event-card">
-            <h3>ፋሲካ</h3>
-            <p>የትንሣኤ በዓል — የሞት ድል</p>
-            <span>ሚያዝያ</span>
-          </article>
-        </div>
+              <div style={{ marginTop: 18 }}>
+                <Link to={`/events/${event.id}`} className="read-more">
+                  Read More →
+                </Link>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

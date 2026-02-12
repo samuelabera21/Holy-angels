@@ -1,4 +1,6 @@
 import "../styles/Home.css";
+import "../styles/reveal.css";
+import useGlobalReveal from "../hooks/useGlobalReveal";
 
 import Hero from "../components/home/Hero";
 import Events from "../components/home/Events";
@@ -16,6 +18,9 @@ import Values from "../components/home/Values";
 */
 
 function Home() {
+  // initialize the global reveal observer for this page
+  useGlobalReveal("main");
+
   return (
     <main>
       <Hero />

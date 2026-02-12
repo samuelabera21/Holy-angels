@@ -10,6 +10,7 @@ import KidaseLanguages from "./pages/KidaseLanguages";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollUpButton from "./components/ScrollUpButton";
 import HolyAngelDetail from "./pages/HolyAngelDetail";
+import EventDetail from "./pages/EventDetail";
 
 
 
@@ -41,6 +42,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/HolyAngels" element={<HolyAngels />} />
           <Route path="/holy-angels/:id" element={<HolyAngelDetail />} />
+          <Route path="/events/:id" element={<EventDetail />} />
           
           <Route path="/videos" element={<Videos />} />
           <Route path="/teachings" element={<Teachings />} />

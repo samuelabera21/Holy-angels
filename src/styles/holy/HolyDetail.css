@@ -70,6 +70,19 @@ html, body {
   background: #fff;
 }
 
+/* allow videos inside the same image-wrapper to behave like images */
+.image-wrapper video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  object-fit: contain;
+  background: #000;
+}
+
 /* TEXT SIDE (SCROLLS) */
 .description {
   flex: 1 1 auto;

@@ -11,11 +11,12 @@
 */
 
 .hero {
-  min-height: 90vh;
+  min-height: 80vh;
   width: 100%;
 
+  /* lighter top fade, stronger at bottom to keep text readable but let image show through */
   background:
-    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.55) 100%),
     var(--hero-bg);
 
   background-size: cover;
@@ -32,26 +33,43 @@
    =============================== */
 
 .hero-content {
-  max-width: 900px;
+  max-width: 980px;
   padding: 0 2rem;
   color: #ffffff;
+  backface-visibility: hidden;
 }
 
 /* Main headline */
 .hero-content h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.9rem, 3.6vw, 3.2rem);
   font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 1.2rem;
+  line-height: 1.14;
+  margin-bottom: 0.9rem;
+  color: #fff;
+  letter-spacing: 0.2px;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.55);
+}
+
+/* small decorative accent under the main title */
+.hero-content h1::after {
+  content: "";
+  display: block;
+  width: 86px;
+  height: 4px;
+  margin: 14px auto 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, rgba(176,137,59,1), rgba(200,170,80,0.9));
+  box-shadow: 0 6px 18px rgba(176,137,59,0.12);
 }
 
 /* Supporting text */
 .hero-content p {
-  font-size: 1.15rem;
-  line-height: 1.6;
-  max-width: 600px;
-  margin-bottom: 2rem;
-  color: #eaeaea;
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  line-height: 1.7;
+  max-width: 720px;
+  margin: 0 auto 1.8rem;
+  color: rgba(235,235,235,0.92);
+  text-shadow: 0 3px 10px rgba(0,0,0,0.35);
 }
 
 /* ===============================
@@ -67,13 +85,13 @@
   text-decoration: none;
   color: #ffffff;
   font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
 
   padding-bottom: 4px;
   border-bottom: 2px solid transparent;
 
-  transition: all 0.3s ease;
+  transition: color 200ms ease, border-color 200ms ease, transform 200ms ease;
 }
 
 /* Hover effect */
@@ -86,16 +104,15 @@
    RESPONSIVE DESIGN
    =============================== */
 
-@media (max-width: 768px) {
-  .hero {
-    min-height: 85vh;
-  }
+@media (max-width: 900px) {
+  .hero { min-height: 68vh; }
+  .hero-content { text-align: center; padding: 0 1.2rem; }
+  .hero-content h1::after { margin-left: auto; margin-right: auto; }
+}
 
-  .hero-content {
-    text-align: center;
-  }
-
-  .hero-socials {
-    justify-content: center;
-  }
+@media (max-width: 480px) {
+  .hero { min-height: 60vh; }
+  .hero-content h1 { font-size: clamp(1.4rem, 4.5vw, 1.9rem); line-height: 1.08; }
+  .hero-content p { font-size: 0.95rem; }
+  .hero-socials { justify-content: center; gap: 12px; }
 }
