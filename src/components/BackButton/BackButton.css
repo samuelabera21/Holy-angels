@@ -1,0 +1,24 @@
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #eaeaea;
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 0.6rem;
+}
+
+.back-button:hover {
+  color: #111;
+  background: #d4af37;
+  transform: translateY(-1px);
+}
+
+.back-button svg { display: block; }
+
+@media (max-width: 768px) {
+  .back-button { margin-right: 0.4rem; padding: 6px; }
+}

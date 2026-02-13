@@ -115,13 +115,14 @@
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import kidase from "../data/teachings/kidase";
-import "../styles/KidaseTypes.css";
+import "../styles/KidaseTypesSimple.css";
 
-const ITEMS_PER_PAGE = 4; // adjust later if you want
+const ITEMS_PER_PAGE = 6; // show six items per page
 
 function KidaseTypes() {
   const { lang } = useParams();
   const [page, setPage] = useState(1);
+  const [query, setQuery] = useState("");
 
   const languageData = kidase.languages[lang];
   if (!languageData) return <p>Language not found</p>;
@@ -136,39 +137,51 @@ function KidaseTypes() {
     start + ITEMS_PER_PAGE
   );
 
+  const filtered = visibleTypes.filter((t) =>
+    t.title.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
-    <div className="kidase-page">
-      {/* background video */}
-      <video className="bg-video" autoPlay muted loop playsInline>
-        <source src="/Teaching/teaching.mp4" type="video/mp4" />
-      </video>
+    <div className="kidase-simple-page">
+      <div className="container">
+        <header className="page-header">
+          <h1>{languageData.title} ቅዳሴ</h1>
+          <p className="subtitle">Choose a section below to view lessons and follow along.</p>
+        </header>
 
-      <div className="overlay" />
+        <div className="controls-row">
+          <input
+            className="simple-search"
+            placeholder="Search sections..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="Search sections"
+          />
+        </div>
 
-      <div className="kidase-content">
-        <h1>{languageData.title} ቅዳሴ</h1>
-        <p>የቅዳሴ አይነቶችን ይምረጡ</p>
-
-        {/* GRID */}
-        <div className="kidase-types">
-          {visibleTypes.map((type) => (
+        <div className="cards-grid">
+          {filtered.map((type) => (
             <Link
               key={type.id}
               to={`/teachings/kidase/${lang}/${type.id}`}
-              className="kidase-card"
+              className="teach-card"
             >
-              <img src={type.image} alt={type.title} />
-              <h3>{type.title}</h3>
+              <div className="card-img-wrap">
+                <img src={type.image} alt={type.title} />
+              </div>
+              <div className="card-content">
+                <h3 className="card-title">{type.title}</h3>
+                <p className="card-desc">{type.description || "Open to view lessons and follow along."}</p>
+              </div>
             </Link>
           ))}
         </div>
 
-        {/* PAGINATION */}
         {totalPages > 1 && (
           <div className="kidase-pagination">
             <button
               disabled={page === 1}
-              onClick={() => setPage(p => p - 1)}
+              onClick={() => setPage((p) => p - 1)}
             >
               ◀ Previous
             </button>
@@ -179,7 +192,7 @@ function KidaseTypes() {
 
             <button
               disabled={page === totalPages}
-              onClick={() => setPage(p => p + 1)}
+              onClick={() => setPage((p) => p + 1)}
             >
               Next ▶
             </button>

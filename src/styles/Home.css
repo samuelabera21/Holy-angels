@@ -254,11 +254,69 @@ body {
 }
 
 @media (max-width: 768px) {
-  .home .hero h1, .hero h1 { font-size: 2.2rem; }
-  .home .event-list, .event-list { flex-direction: column; align-items: center; }
-  .home .community, .community { flex-direction: column; }
-  .community-image { width: 100%; height: clamp(160px, 28vw, 260px); }
-  .values-grid { gap: 14px; }
+  /* HERO - smaller, tighter on mobile */
+  .home .hero, .hero {
+    min-height: 40vh;
+    padding: 2rem 1rem;
+    align-items: center;
+  }
+
+  .home .hero h1, .hero h1 { font-size: 1.9rem; }
+  .home .hero p, .hero p { font-size: 1rem; }
+
+  /* EVENTS - stack cards full width */
+  .home .event-list, .event-list { flex-direction: column; align-items: stretch; gap: 16px; }
+
+  .home .event-card, .event-card {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  /* Ensure images and content inside event cards flow correctly on mobile */
+  .home .event-list { padding: 0 12px; }
+
+  .home .event-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+    overflow: visible;
+  }
+
+  .home .event-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .home .event-card p {
+    text-align: left;
+    color: #444;
+  }
+
+  .home .event-card h3 { font-size: 1.1rem; }
+
+  /* QUOTE - tighter spacing */
+  .home .quote {
+    padding: 20px 14px;
+    font-size: 0.98rem;
+  }
+
+  .home .quote cite { font-size: 0.9rem; }
+
+  /* COMMUNITY - stack, center text */
+  .home .community, .community { flex-direction: column; gap: 18px; padding: 28px 12px; }
+  .community-text { text-align: center; }
+  .community-image { width: 100%; height: clamp(140px, 32vw, 220px); border-radius: 10px; }
+
+  /* VALUES - single row wrapping and smaller cards */
+  .home .values, .values { padding: 28px 12px; }
+  .values-grid { gap: 12px; justify-content: center; }
+  .value-card { width: 96px; height: 96px; }
 }
 
 @media (max-width: 420px) {

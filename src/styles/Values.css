@@ -195,4 +195,17 @@
   .values-text-column {
     grid-template-columns: 1fr;
   }
+  
+  /* Center text and headings for small devices for a cleaner look */
+  .value-card {
+    text-align: center;
+    min-height: auto;
+  }
+
+  .value-card h3,
+  .value-card p {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

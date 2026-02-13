@@ -67,7 +67,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import kidase from "../data/teachings/kidase";
-import "../styles/TeachingDetails.css";
+import "../styles/KidaseTypeDetailsSimple.css";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -86,38 +86,36 @@ function KidaseTypeDetails() {
   const visibleSlides = type.slides.slice(start, start + ITEMS_PER_PAGE);
 
   return (
-    <div className="teaching-details">
-      <video className="teaching-bg-video" autoPlay muted loop playsInline>
-        <source src="/Teaching/teaching.mp4" type="video/mp4" />
-      </video>
-
-      <div className="teaching-content">
-        <h1 className="teaching-title">{type.title}</h1>
+    <div className="kidase-type-simple">
+      <div className="kt-container">
+        <header className="kt-header">
+          <h1>{type.title}</h1>
+          <p className="kt-sub">Choose a section to listen and continue the Kidase</p>
+        </header>
 
         <div className="slides-wrapper">
-          {visibleSlides.map(slide => (
+          {visibleSlides.map((slide) => (
             <Link
               key={slide.id}
               to={`/teachings/kidase/${lang}/${typeId}/${slide.id}`}
-              className="media-card"
+              className="media-card-simple"
             >
-              <img src={slide.image} alt={slide.caption} />
+              <div className="mc-img">
+                <img src={slide.image} alt={slide.caption} />
+              </div>
               <h3>{slide.caption}</h3>
             </Link>
           ))}
         </div>
 
         <div className="pagination">
-          <button disabled={page === 1} onClick={() => setPage(p => p - 1)}>
+          <button disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
             Previous
           </button>
 
           <span>Page {page} of {totalPages}</span>
 
-          <button
-            disabled={page === totalPages}
-            onClick={() => setPage(p => p + 1)}
-          >
+          <button disabled={page === totalPages} onClick={() => setPage((p) => p + 1)}>
             Next
           </button>
         </div>

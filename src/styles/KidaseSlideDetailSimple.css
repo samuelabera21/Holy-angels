@@ -1,0 +1,41 @@
+/* Styles for slide detail: show full image (no crop), readable text, audio controls */
+:root{ --bg:#fbf8f3; --card:#fff; --muted:#6b6b6b; --accent:#111827 }
+
+.kidase-slide-simple{
+  background: linear-gradient(180deg,#fbf8f3, #f7f2e8);
+  min-height:100vh;
+  padding:40px 18px;
+  box-sizing:border-box;
+}
+
+.ks-container{ max-width:1100px; margin:0 auto }
+.ks-header{ text-align:center; margin-bottom:18px }
+.ks-header h1{ margin:0; color:var(--accent); font-size:24px }
+
+.ks-main{ display:flex; flex-direction:column; gap:18px; align-items:center }
+.ks-figure{ margin:0; background:var(--card); padding:18px; border-radius:8px; box-shadow:0 8px 24px rgba(15,23,42,0.06); border:1px solid rgba(15,23,42,0.04) }
+
+/* Image: keep aspect ratio, avoid cropping, scale down to fit viewport but allow vertical scroll */
+.ks-image{ display:block; max-width:100%; width:auto; height:auto; object-fit:contain }
+.ks-figure{ max-width:960px }
+.ks-credit{ text-align:center; color:var(--muted); margin-top:10px; font-size:14px }
+
+.ks-audio{ margin-top:8px }
+.ks-audio audio{ display:none }
+
+.ks-controls{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:center }
+.ks-controls button{ padding:8px 12px; border-radius:8px; border:1px solid #e7e5e1; background:#fff; cursor:pointer }
+.ks-controls .ks-time{ color:var(--muted); font-size:13px; margin:0 6px }
+.ks-controls .ks-volume input[type="range"]{ width:120px }
+.ks-download{ padding:8px 10px; background:#0f172a; color:#fff; border-radius:6px; text-decoration:none }
+
+.ks-nav{ display:flex; gap:12px; justify-content:center; margin-top:12px }
+.ks-nav button{ padding:8px 14px; border-radius:8px; border:1px solid #e7e5e1; background:#fff; cursor:pointer }
+.ks-nav button:disabled{ opacity:0.5; cursor:not-allowed }
+
+/* Allow image to be opened full-size in new tab (user can right-click). Optionally add zoom on click in future */
+
+@media (max-width:760px){
+  .ks-figure{ padding:12px }
+  .ks-header h1{ font-size:20px }
+}

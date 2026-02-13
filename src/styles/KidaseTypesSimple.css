@@ -1,0 +1,176 @@
+/* Simple, religious-friendly card layout matching the provided screenshots */
+:root{
+  --bg:#f3f4f6;
+  --card-bg:#ffffff;
+  --muted:#6b7280;
+  --accent:#111827;
+  /* Navbar variables used to align the corner decorations */
+  --nav-height:64px;
+  --nav-color:#4a4a4a;
+}
+
+.kidase-simple-page{
+  background:var(--bg);
+  min-height:100vh;
+  padding:48px 20px;
+  box-sizing:border-box;
+}
+
+.container{
+  max-width:1100px;
+  margin:0 auto;
+}
+
+/* Decorative fixed holy images at top-left and top-right (from public/holy).
+   Rendered as circular thumbnails with a dark/illustrative backdrop so they
+   feel like small 'drawings' resting above the page (non-interactive). */
+.kidase-simple-page::before,
+.kidase-simple-page::after{
+  content:"";
+  position:fixed;
+  /* place the circles just below the navbar so they don't overlap it,
+     and add a top band (via gradient) that matches the navbar color so
+     the circle appears visually connected to the bar. */
+  top:calc(var(--nav-height) + 8px);
+  width:180px;
+  height:180px;
+  /* The gradient creates a matching 'cap' at the top. The image is below. */
+  background-image: linear-gradient(to bottom, var(--nav-color) 0 22%, rgba(0,0,0,0) 23%), url('/holy/kidusfanuel.jpg');
+  background-size: auto 22%, cover;
+  background-repeat:no-repeat;
+  background-position: top center, center;
+  pointer-events:none;
+  opacity:1;
+  z-index:999; /* keep above page content */
+  border-radius:50%;
+  background-color:#000; /* fallback black circular background */
+  box-shadow:0 8px 30px rgba(0,0,0,0.6), inset 0 0 18px rgba(255,255,255,0.02);
+  border:6px solid rgba(0,0,0,0.6);
+  /* stylize the image to look more like a drawing/illustration */
+  filter:grayscale(30%) contrast(1.08) saturate(0.7) brightness(0.95);
+  transform:translateZ(0);
+}
+.kidase-simple-page::before{ left:16px; background-image: linear-gradient(to bottom, var(--nav-color) 0 22%, rgba(0,0,0,0) 23%), url('/holy/kidusfanuel.jpg') }
+.kidase-simple-page::after{ right:16px; background-image: linear-gradient(to bottom, var(--nav-color) 0 22%, rgba(0,0,0,0) 23%), url('/holy/kidusgebrel.jpg') }
+
+/* Ensure content stacks below decorations */
+.kidase-simple-page .container{ position:relative; z-index:1 }
+
+@media (max-width:900px){
+  .kidase-simple-page::before,
+  .kidase-simple-page::after{ width:140px; height:140px; top:calc(var(--nav-height) + 6px) }
+}
+
+@media (max-width:520px){
+  /* hide on very small screens to avoid covering content */
+  .kidase-simple-page::before,
+  .kidase-simple-page::after{ display:none }
+}
+
+.page-header{
+  text-align:center;
+  margin-bottom:28px;
+}
+.page-header h1{
+  font-size:28px;
+  margin:0 0 8px 0;
+  color:var(--accent);
+}
+.page-header .subtitle{
+  color:var(--muted);
+  margin:0;
+}
+
+.controls-row{
+  display:flex;
+  justify-content:center;
+  margin:20px 0 28px 0;
+}
+.simple-search{
+  width:100%;
+  max-width:480px;
+  padding:10px 12px;
+  border:1px solid #e5e7eb;
+  border-radius:8px;
+  background: #fff;
+  box-shadow:none;
+  color:var(--accent);
+}
+
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:28px;
+}
+
+.teach-card{
+  display:flex;
+  flex-direction:column;
+  text-decoration:none;
+  background:var(--card-bg);
+  border-radius:8px;
+  padding:34px 28px;
+  box-shadow:0 4px 12px rgba(15,23,42,0.06);
+  border:1px solid rgba(15,23,42,0.04);
+  color:inherit;
+  align-items:center;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.teach-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 10px 22px rgba(15,23,42,0.09);
+}
+
+.card-img-wrap{
+  width:220px;
+  height:160px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:18px;
+}
+.card-img-wrap img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+
+.card-content{
+  text-align:center;
+}
+.card-title{
+  font-size:20px;
+  margin:6px 0 10px 0;
+  color:var(--accent);
+}
+.card-desc{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5;
+  margin:0;
+  max-width:44ch;
+}
+
+.kidase-pagination{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  align-items:center;
+  margin:34px 0 12px 0;
+}
+.kidase-pagination button{
+  padding:8px 12px;
+  border-radius:6px;
+  border:1px solid #e5e7eb;
+  background:#fff;
+  cursor:pointer;
+}
+.kidase-pagination button:disabled{
+  opacity:0.5;
+  cursor:not-allowed;
+}
+
+@media (max-width:640px){
+  .card-img-wrap{ width:180px; height:120px }
+  .page-header h1{ font-size:22px }
+}

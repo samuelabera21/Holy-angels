@@ -87,8 +87,6 @@
 .events-section .image-wrapper {
   flex: 0 0 340px;
   max-width: 100%;
-  position: sticky;
-  top: 120px; /* below navbar */
   align-self: flex-start;
   box-sizing: border-box;
 }
@@ -120,12 +118,8 @@
   color: #333;
   padding-right: 12px;
   text-align: justify;
-
-  /* lock height so only text scrolls (keeps image fixed) */
-  max-height: calc(100vh - 200px);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
+
 
 .events-desc h3 {
   font-size: 28px;
@@ -143,12 +137,42 @@
   color: #b8860b;
 }
 
-/* Read more link style */
+/* Read more link style - styled like the community button with hover effects */
 .read-more {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   margin-top: 18px;
-  color: #4b2b7f;
-  text-decoration: underline;
+  padding: 10px 18px;
+  background: #0d1b47; /* match community button */
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+  box-shadow: 0 6px 18px rgba(13, 27, 71, 0.12);
+}
+
+.read-more::after {
+  content: "→";
+  display: inline-block;
+  transition: transform 200ms ease;
+}
+
+.read-more:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  background: #0b1738;
+}
+
+.read-more:hover::after {
+  transform: translateX(6px) rotate(8deg);
+}
+
+.read-more:focus {
+  outline: 3px solid rgba(244,196,48,0.18);
+  outline-offset: 2px;
 }
 
 /* scrollbar (light) */
@@ -163,6 +187,17 @@
 /* make font family match Holy detail */
 .events-container, .events-desc {
   font-family: "Noto Sans Ethiopic", sans-serif;
+}
+
+/* On wide screens keep the locked-scroll behavior so images can remain sticky
+   while the text column scrolls independently. */
+@media (min-width: 1100px) {
+  .events-desc {
+    /* lock height so only text scrolls (keeps image fixed) */
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* RESPONSIVE - fall back to stacked layout */
@@ -182,6 +217,14 @@
   .events-desc {
     font-size: 16px;
     padding-right: 0;
+  }
+}
+
+/* make image sticky on wide screens only */
+@media (min-width: 1100px) {
+  .events-section .image-wrapper {
+    position: sticky;
+    top: 120px; /* below navbar */
   }
 }
 

@@ -1,4 +1,4 @@
-/* Page wrapper */
+/* Mobile-first styles for Teachings page */
 .teaching-page {
   position: relative;
   width: 100%;
@@ -27,7 +27,7 @@
   z-index: 2;
 }
 
-/* Content on top */
+/* Content on top (mobile-first) */
 .teaching-content {
   position: relative;
   z-index: 3;
@@ -41,39 +41,46 @@
   padding: 1rem;
 }
 
-/* Title */
+/* Title (mobile) */
 .teaching-content h1 {
-  font-size: 3rem;
+  font-size: 1.8rem;
   margin-bottom: 0.5rem;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
-/* Subtitle */
+/* Subtitle (mobile) */
 .teaching-content p {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  margin-bottom: 2rem;
+  font-size: 1rem;
+  opacity: 0.95;
+  margin-bottom: 1.2rem;
+  padding: 0 0.3rem;
 }
 
-/* Links container */
+/* Links container (stacked on mobile) */
 .teaching-links {
   display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
-/* Teaching link buttons */
+/* Teaching link buttons (mobile) */
 .teaching-links a {
   text-decoration: none;
-  padding: 0.9rem 2.2rem;
-  border-radius: 30px;
+  display: inline-block;
+  width: 100%;
+  max-width: 360px;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(6px);
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
+  text-align: center;
 }
 
 /* Hover effect */
@@ -81,4 +88,32 @@
   background: #d4af37; /* gold tone */
   color: #111;
   transform: translateY(-3px);
+}
+
+/* Larger screens: restore original desktop layout and sizes */
+@media (min-width: 768px) {
+  .teaching-content h1 {
+    font-size: 3rem;
+    letter-spacing: 1px;
+  }
+
+  .teaching-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .teaching-links {
+    flex-direction: row;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .teaching-links a {
+    width: auto;
+    max-width: none;
+    padding: 0.9rem 2.2rem;
+    font-size: 1.1rem;
+    border-radius: 30px;
+  }
 }
