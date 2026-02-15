@@ -81,9 +81,11 @@
 
 
 
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import kidase from "../data/teachings/kidase";
+import "../styles/KidaseTypesSimple.css";
 import "../styles/KidaseSlideDetailSimple.css";
 import { useState } from "react";
 
@@ -91,19 +93,26 @@ function KidaseSlideDetail() {
   const { lang, typeId, slideId } = useParams();
   const navigate = useNavigate();
   const audioRef = useRef(null);
+  const { t } = useTranslation();
 
   const language = kidase.languages[lang];
-  if (!language) return <p>Language not found</p>;
+  if (!language) return <p>{t("kidase.errors.languageNotFound")}</p>;
 
   const type = language.types.find(t => t.id === typeId);
-  if (!type) return <p>Kidase type not found</p>;
+  if (!type) return <p>{t("kidase.errors.typeNotFound")}</p>;
 
   const index = type.slides.findIndex(
     s => String(s.id) === slideId
   );
 
   const slide = type.slides[index];
-  if (!slide) return <p>Slide not found</p>;
+  if (!slide) return <p>{t("kidase.errors.slideNotFound")}</p>;
+
+  const languageTitle = t(`kidase.languages.${lang}`);
+  const typeTitle = t(`kidase.content.${lang}.types.${typeId}.title`);
+  const slideCaption = t(
+    `kidase.content.${lang}.types.${typeId}.slides.${slide.id}.caption`
+  );
 
   useEffect(() => {
     const a = audioRef.current;
@@ -170,16 +179,38 @@ function KidaseSlideDetail() {
   };
 
   return (
-    <div className="kidase-slide-simple">
-      <div className="ks-container">
-        <header className="ks-header">
-          <h1>{slide.caption}</h1>
+    <div className="kidase-simple-page kidase-slide-simple">
+      <header className="kidase-types-hero">
+        <nav className="kidase-types-breadcrumbs" aria-label="Breadcrumb">
+          <Link to="/">{t("kidase.breadcrumbs.home")}</Link>
+          <span aria-hidden="true">/</span>
+          <Link to="/teachings">{t("kidase.breadcrumbs.teachings")}</Link>
+          <span aria-hidden="true">/</span>
+          <Link to="/teachings/kidase">{t("kidase.breadcrumbs.kidase")}</Link>
+          <span aria-hidden="true">/</span>
+          <Link to={`/teachings/kidase/${lang}`}>{languageTitle}</Link>
+          <span aria-hidden="true">/</span>
+          <Link to={`/teachings/kidase/${lang}/${typeId}`}>{typeTitle}</Link>
+          <span aria-hidden="true">/</span>
+          <span>{slideCaption}</span>
+        </nav>
+
+        <div className="kidase-types-hero-content">
+          <h1>{slideCaption}</h1>
+          <p>{t("kidase.slide.heroSubtitle")}</p>
+        </div>
+      </header>
+
+      <div className="container">
+        <header className="page-header">
+          <h2>{t("kidase.slide.lessonTitle")}</h2>
+          <p className="subtitle">{t("kidase.slide.lessonSubtitle")}</p>
         </header>
 
         <main className="ks-main">
           <figure className="ks-figure">
-            <img src={slide.image} alt={slide.caption} className="ks-image" />
-            <figcaption className="ks-credit">{slide.caption}</figcaption>
+            <img src={slide.image} alt={slideCaption} className="ks-image" />
+            <figcaption className="ks-credit">{slideCaption}</figcaption>
           </figure>
 
           <div className="ks-audio">
@@ -188,9 +219,24 @@ function KidaseSlideDetail() {
             </audio>
 
             <div className="ks-controls">
-              <button onClick={() => seek(-10)} aria-label="Rewind 10 seconds">⟲ 10s</button>
-              <button onClick={togglePlay} aria-label={playing ? "Pause" : "Play"}>{playing ? "Pause" : "Play"}</button>
-              <button onClick={() => seek(10)} aria-label="Forward 10 seconds">10s ⟳</button>
+              <button
+                onClick={() => seek(-10)}
+                aria-label={t("kidase.slide.rewind")}
+              >
+                ⟲ 10s
+              </button>
+              <button
+                onClick={togglePlay}
+                aria-label={playing ? t("kidase.slide.pause") : t("kidase.slide.play")}
+              >
+                {playing ? t("kidase.slide.pause") : t("kidase.slide.play")}
+              </button>
+              <button
+                onClick={() => seek(10)}
+                aria-label={t("kidase.slide.forward")}
+              >
+                10s ⟳
+              </button>
 
               <div className="ks-time">
                 <span>{Math.floor(currentTime) || 0}s</span>
@@ -199,11 +245,27 @@ function KidaseSlideDetail() {
               </div>
 
               <label className="ks-volume">
-                <input type="range" min="0" max="1" step="0.05" value={volume} onChange={(e) => onVolume(Number(e.target.value))} aria-label="Volume" />
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  value={volume}
+                  onChange={(e) => onVolume(Number(e.target.value))}
+                  aria-label={t("kidase.slide.volume")}
+                />
               </label>
 
               {slide.audio && (
-                <a className="ks-download" href={slide.audio} download target="_blank" rel="noreferrer">Download</a>
+                <a
+                  className="ks-download"
+                  href={slide.audio}
+                  download
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {t("kidase.slide.download")}
+                </a>
               )}
             </div>
           </div>
@@ -217,7 +279,7 @@ function KidaseSlideDetail() {
                 )
               }
             >
-              ◀ Previous
+              {t("kidase.pagination.previous")}
             </button>
 
             <button
@@ -228,7 +290,7 @@ function KidaseSlideDetail() {
                 )
               }
             >
-              Next ▶
+              {t("kidase.pagination.next")}
             </button>
           </div>
         </main>

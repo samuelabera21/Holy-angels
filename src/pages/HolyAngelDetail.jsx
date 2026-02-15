@@ -88,42 +88,100 @@
 
 
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import holyAngels from "../data/holy/holyAngels";
-import "../styles/holy/HolyDetail.css";
+import "../styles/holy/HolyAngelDetail.css";
 
 function HolyAngelDetail() {
   const { id } = useParams();
+  const { t } = useTranslation();
 
   const angel = holyAngels.find((a) => a.id === id);
 
   if (!angel) {
     return (
-      <section className="angel-detail">
-        <h2>መላዕክት አልተገኘም</h2>
+      <section className="holy-angel-detail-page">
+        <header className="holy-angel-detail-hero">
+          <nav className="holy-angel-detail-breadcrumbs" aria-label="Breadcrumb">
+            <Link to="/">{t("holyAngelDetail.breadcrumbs.home")}</Link>
+            <span aria-hidden="true">/</span>
+            <Link to="/holy-angels">{t("holyAngelDetail.breadcrumbs.holyAngels")}</Link>
+            <span aria-hidden="true">/</span>
+            <span>{t("holyAngelDetail.notFound.breadcrumb")}</span>
+          </nav>
+
+          <div className="holy-angel-detail-hero-content">
+            <h1>{t("holyAngelDetail.notFound.title")}</h1>
+            <p>{t("holyAngelDetail.notFound.subtitle")}</p>
+          </div>
+        </header>
       </section>
     );
   }
 
+  const enName = t(`holyAngels.items.${angel.id}.name`, { lng: "en" });
+  const amName = t(`holyAngels.items.${angel.id}.amharicName`, { lng: "am" });
+  const shortDescription = t(
+    `holyAngels.items.${angel.id}.shortDescription`
+  );
+  const descriptionAm = t(`holyAngels.items.${angel.id}.descriptionAm`, {
+    lng: "am"
+  });
+  const descriptionEn = t(`holyAngels.items.${angel.id}.descriptionEn`, {
+    lng: "en"
+  });
+
   return (
-    <section className="angel-detail">
-      <div className="detail-hero">
-        <h1>{angel.amharic}</h1>
-        <p className="meaning">{angel.meaning}</p>
-      </div>
+    <section className="holy-angel-detail-page">
+      <header className="holy-angel-detail-hero">
+        <nav className="holy-angel-detail-breadcrumbs" aria-label="Breadcrumb">
+          <Link to="/">{t("holyAngelDetail.breadcrumbs.home")}</Link>
+          <span aria-hidden="true">/</span>
+          <Link to="/holy-angels">{t("holyAngelDetail.breadcrumbs.holyAngels")}</Link>
+          <span aria-hidden="true">/</span>
+          <span>{amName || enName}</span>
+        </nav>
 
-      <div className="detail-body">
-        <div className="image-wrapper">
-          <img src={angel.image} alt={angel.amharic} />
+        <div className="holy-angel-detail-hero-content">
+          <h1>{amName || enName}</h1>
+          {enName && <p className="holy-angel-detail-subtitle">{enName}</p>}
         </div>
+      </header>
 
-        <div className="description">
-          <p>{angel.descriptionAm}</p>
+      <div className="holy-angel-detail-container">
+        <div className="holy-angel-detail-body">
+          <div className="holy-angel-detail-media">
+            <img src={angel.image} alt={enName || amName} />
+
+            {angel.video && (
+              <video controls poster={angel.image}>
+                <source src={angel.video} type="video/mp4" />
+                {t("holyAngelDetail.videoFallback")}
+              </video>
+            )}
+          </div>
+
+          <div className="holy-angel-detail-text">
+            <h2>{t("holyAngelDetail.aboutTitle")}</h2>
+            {shortDescription && <p>{shortDescription}</p>}
+
+            {descriptionAm && (
+              <div className="holy-angel-detail-section">
+                <h3>{t("holyAngelDetail.sections.amharic")}</h3>
+                <p>{descriptionAm}</p>
+              </div>
+            )}
+
+            {descriptionEn && (
+              <div className="holy-angel-detail-section">
+                <h3>{t("holyAngelDetail.sections.english")}</h3>
+                <p>{descriptionEn}</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-
-
-
     </section>
   );
 }

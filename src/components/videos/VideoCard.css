@@ -1,8 +1,9 @@
 .video-card {
-  background: #ffffff;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -30,11 +31,11 @@
 .video-info h3 {
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
-  color: #222;
+  color: var(--text-strong);
 }
 
 .video-info p {
   font-size: 0.95rem;
-  color: #666;
+  color: var(--muted);
   line-height: 1.5;
 }

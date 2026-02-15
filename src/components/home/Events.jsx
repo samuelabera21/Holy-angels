@@ -33,43 +33,61 @@
 // export default Events;
 
 
+import { useTranslation } from "react-i18next";
 import "../../styles/Events.css";
 import events from "../../data/events";
 import { Link } from "react-router-dom";
 
 function Events() {
+  const { t } = useTranslation();
+
   return (
     <section className="events">
       {/* HERO TITLE */}
       <div className="events-content">
-        <h2>የቤተ ክርስቲያን በዓላት</h2>
-        <p className="subtitle">የቤተ ክርስቲያን ታላቅ በዓላት እና ክብር</p>
+        <h2>{t("home.events.title")}</h2>
+        <p className="subtitle">{t("home.events.subtitle")}</p>
       </div>
 
       {/* EVENTS - modern holy style: image on one side, description on the other */}
       <div className="events-container">
-        {events.map((event, index) => (
+        {events.map((event, index) => {
+          const descValue = t(`home.events.items.${event.id}.desc`, {
+            returnObjects: true
+          });
+
+          const descParts = Array.isArray(descValue) ? descValue : [descValue];
+
+          return (
           <div
             key={event.id}
             className={`events-section ${index % 2 === 0 ? "normal" : "reverse"}`}
           >
             <div className="image-wrapper">
-              <img src={event.image} alt={event.title} />
+              <img
+                src={event.image}
+                alt={t(`home.events.items.${event.id}.title`)}
+              />
             </div>
 
             <div className="events-desc">
-              <h3>{event.title}</h3>
-              <p>{event.desc}</p>
-              <span>{event.date}</span>
+              <h3>{t(`home.events.items.${event.id}.title`)}</h3>
+              {descParts.map((part, partIndex) => (
+                <p key={`${event.id}-desc-${partIndex}`}>{part}</p>
+              ))}
+              <span>
+                {t(`home.events.items.${event.id}.date`)}
+              </span>
 
               <div style={{ marginTop: 18 }}>
                 <Link to={`/events/${event.id}`} className="read-more">
-                  Read More →
+                  {t("home.events.readMore")} →
                 </Link>
               </div>
             </div>
           </div>
-        ))}
+        );
+        })}
       </div>
     </section>
   );

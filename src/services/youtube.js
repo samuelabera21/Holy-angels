@@ -206,6 +206,7 @@ export async function fetchChannelVideos(maxResults = 6) {
     if (cachedData) {
       return {
         status: "warning",
+        messageKey: "videos.status.offlineWarning",
         message: "You are offline. Showing cached videos.",
         data: cachedData.data
       };
@@ -213,6 +214,7 @@ export async function fetchChannelVideos(maxResults = 6) {
 
     return {
       status: "error",
+      messageKey: "videos.status.offlineError",
       message: "You are offline and no cached videos are available.",
       data: []
     };
@@ -325,6 +327,7 @@ const videos = json.items.map(item => {
     if (cachedData) {
       return {
         status: "warning",
+        messageKey: "videos.status.unavailableWarning",
         message: "YouTube is unavailable. Showing cached videos.",
         data: cachedData.data
       };
@@ -332,6 +335,7 @@ const videos = json.items.map(item => {
 
     return {
       status: "error",
+      messageKey: "videos.status.unavailableError",
       message: "Unable to load videos right now.",
       data: []
     };

@@ -3,8 +3,8 @@
    =============================== */
 
 .history-ethiopia {
-  padding: 6rem 2rem;
-  background-color: #f8f6f2;
+  padding: 5rem 2rem;
+  background-color: transparent;
 }
 
 .ethiopia-container {
@@ -13,21 +13,26 @@
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 3rem;
   align-items: center;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
 }
 
 /* Text */
 .ethiopia-text h2 {
   font-size: 2.3rem;
   margin-bottom: 1.5rem;
-  color: #1f1f1f;
+  color: var(--accent);
 }
 
 .ethiopia-text p {
   font-size: 1rem;
   line-height: 1.8;
-  color: #444;
+  color: var(--muted);
   margin-bottom: 1rem;
 }
 
@@ -36,8 +41,9 @@
   height: 320px;
   border-radius: 16px;
 
-  background: #ddd;
-  color: #666;
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--muted);
+  border: 1px solid var(--card-border);
 
   display: flex;
   align-items: center;

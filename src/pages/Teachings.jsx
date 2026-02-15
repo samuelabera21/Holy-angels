@@ -1,35 +1,71 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import useGlobalReveal from "../hooks/useGlobalReveal";
+import "../styles/reveal.css";
 import "../styles/Teachings.css";
 
 function Teachings() {
+  useGlobalReveal(".teachings-page");
+  const { t } = useTranslation();
+
+  const teachingItems = [
+    {
+      id: "kidase",
+      title: t("teachings.items.kidase.title"),
+      description: t("teachings.items.kidase.description"),
+      to: "/teachings/kidase",
+    },
+    {
+      id: "wereb",
+      title: t("teachings.items.wereb.title"),
+      description: t("teachings.items.wereb.description"),
+      to: "/teachings/wereb",
+    },
+  ];
+
   return (
-    <div className="teaching-page">
-      {/* Background video */}
-      <video
-        className="bg-video"
-        autoPlay
-        muted
-        loop
-        playsInline
-      >
-        <source src="/Teaching/teaching.mp4" type="video/mp4" />
-      </video>
+    <div className="teachings-page">
+      <header className="teachings-hero" id="teachings-top">
+        <nav className="teachings-breadcrumbs" aria-label="Breadcrumb">
+          <Link to="/">{t("teachings.breadcrumbs.home")}</Link>
+          <span aria-hidden="true">/</span>
+          <span>{t("teachings.breadcrumbs.teachings")}</span>
+        </nav>
 
-      {/* Dark overlay */}
-      <div className="overlay"></div>
-
-      {/* Content */}
-      <div className="teaching-content">
-        <h1>Teachings</h1>
-        <p>Select a teaching to begin:</p>
-
-        <div className="teaching-links">
-          <Link to="/teachings/kidase">ቅዳሴ (Kidase)</Link>
-          {/* <Link to="/teachings/kidase">ቅዳሴ (Kidase)</Link> */}
-
-          <Link to="/teachings/wereb">ወረብ (Wereb)</Link>
+        <div className="teachings-hero-content">
+          <h1>{t("teachings.hero.title")}</h1>
+          <p>{t("teachings.hero.subtitle")}</p>
+          <a className="teachings-hero-cta" href="#teachings-grid">
+            {t("teachings.hero.cta")}
+          </a>
         </div>
-      </div>
+      </header>
+
+      <section className="teachings-section" id="teachings-grid">
+        <div className="teachings-section-header">
+          <h2>{t("teachings.section.title")}</h2>
+          <p>{t("teachings.section.subtitle")}</p>
+        </div>
+
+        <div className="teachings-grid">
+          {teachingItems.map((item) => (
+            <Link key={item.id} to={item.to} className="teachings-card">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+              <span className="teachings-card-link">
+                {t("teachings.card.open")}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="teachings-section teachings-section-muted">
+        <div className="teachings-section-header">
+          <h2>{t("teachings.more.title")}</h2>
+          <p>{t("teachings.more.subtitle")}</p>
+        </div>
+      </section>
     </div>
   );
 }

@@ -114,6 +114,9 @@
 
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import useGlobalReveal from "../hooks/useGlobalReveal";
+import "../styles/reveal.css";
 import kidase from "../data/teachings/kidase";
 import "../styles/KidaseTypesSimple.css";
 
@@ -123,9 +126,14 @@ function KidaseTypes() {
   const { lang } = useParams();
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
+  const { t } = useTranslation();
+
+  useGlobalReveal(".kidase-simple-page");
 
   const languageData = kidase.languages[lang];
-  if (!languageData) return <p>Language not found</p>;
+  if (!languageData) return <p>{t("kidase.errors.languageNotFound")}</p>;
+
+  const languageTitle = t(`kidase.languages.${lang}`);
 
   const totalPages = Math.ceil(
     languageData.types.length / ITEMS_PER_PAGE
@@ -137,44 +145,71 @@ function KidaseTypes() {
     start + ITEMS_PER_PAGE
   );
 
-  const filtered = visibleTypes.filter((t) =>
-    t.title.toLowerCase().includes(query.toLowerCase())
-  );
+  const filtered = visibleTypes.filter((type) => {
+    const typeTitle = t(`kidase.content.${lang}.types.${type.id}.title`);
+    return typeTitle.toLowerCase().includes(query.toLowerCase());
+  });
 
   return (
     <div className="kidase-simple-page">
+      <header className="kidase-types-hero">
+        <nav className="kidase-types-breadcrumbs" aria-label="Breadcrumb">
+          <Link to="/">{t("kidase.breadcrumbs.home")}</Link>
+          <span aria-hidden="true">/</span>
+          <Link to="/teachings">{t("kidase.breadcrumbs.teachings")}</Link>
+          <span aria-hidden="true">/</span>
+          <Link to="/teachings/kidase">{t("kidase.breadcrumbs.kidase")}</Link>
+          <span aria-hidden="true">/</span>
+          <span>{languageTitle}</span>
+        </nav>
+
+        <div className="kidase-types-hero-content">
+          <h1>
+            {t("kidase.types.heroTitle", {
+              language: languageTitle
+            })}
+          </h1>
+          <p>{t("kidase.types.heroSubtitle")}</p>
+        </div>
+      </header>
+
       <div className="container">
         <header className="page-header">
-          <h1>{languageData.title} ቅዳሴ</h1>
-          <p className="subtitle">Choose a section below to view lessons and follow along.</p>
+          <h2>{t("kidase.types.sectionTitle")}</h2>
+          <p className="subtitle">{t("kidase.types.sectionSubtitle")}</p>
         </header>
 
         <div className="controls-row">
           <input
             className="simple-search"
-            placeholder="Search sections..."
+            placeholder={t("kidase.types.searchPlaceholder")}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            aria-label="Search sections"
+            aria-label={t("kidase.types.searchAriaLabel")}
           />
         </div>
 
         <div className="cards-grid">
-          {filtered.map((type) => (
-            <Link
-              key={type.id}
-              to={`/teachings/kidase/${lang}/${type.id}`}
-              className="teach-card"
-            >
-              <div className="card-img-wrap">
-                <img src={type.image} alt={type.title} />
-              </div>
-              <div className="card-content">
-                <h3 className="card-title">{type.title}</h3>
-                <p className="card-desc">{type.description || "Open to view lessons and follow along."}</p>
-              </div>
-            </Link>
-          ))}
+          {filtered.map((type) => {
+            const typeTitle = t(`kidase.content.${lang}.types.${type.id}.title`);
+            return (
+              <Link
+                key={type.id}
+                to={`/teachings/kidase/${lang}/${type.id}`}
+                className="teach-card"
+              >
+                <div className="card-img-wrap">
+                  <img src={type.image} alt={typeTitle} />
+                </div>
+                <div className="card-content">
+                  <h3 className="card-title">{typeTitle}</h3>
+                  <p className="card-desc">
+                    {t("kidase.types.cardDescription")}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
         {totalPages > 1 && (
@@ -183,18 +218,21 @@ function KidaseTypes() {
               disabled={page === 1}
               onClick={() => setPage((p) => p - 1)}
             >
-              ◀ Previous
+              {t("kidase.pagination.previous")}
             </button>
 
             <span>
-              Page {page} of {totalPages}
+              {t("kidase.pagination.pageOf", {
+                page,
+                total: totalPages
+              })}
             </span>
 
             <button
               disabled={page === totalPages}
               onClick={() => setPage((p) => p + 1)}
             >
-              Next ▶
+              {t("kidase.pagination.next")}
             </button>
           </div>
         )}

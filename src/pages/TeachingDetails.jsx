@@ -53,6 +53,7 @@
 
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import kidase from "../data/teachings/kidase";
 import MediaSlide from "../components/Teaching/MediaSlide";
 import "../styles/TeachingDetails.css";
@@ -61,11 +62,14 @@ const ITEMS_PER_PAGE = 6;
 
 function TeachingDetails() {
   const { id } = useParams();
+  const { t } = useTranslation();
   const [playingId, setPlayingId] = useState(null);
   const [page, setPage] = useState(1);
 
   const teaching = id === "kidase" ? kidase : null;
-  if (!teaching) return <p>Teaching not found</p>;
+  if (!teaching) {
+    return <p>{t("teachings.details.notFound")}</p>;
+  }
 
   const totalPages = Math.ceil(teaching.slides.length / ITEMS_PER_PAGE);
   const start = (page - 1) * ITEMS_PER_PAGE;
@@ -82,8 +86,16 @@ function TeachingDetails() {
       <div className="overlay"></div>
 
       <div className="teaching-content">
-        <h1 className="teaching-title">{teaching.title}</h1>
-        <p className="teaching-description">{teaching.description}</p>
+        <h1 className="teaching-title">
+          {t(`teachings.details.${id}.title`, {
+            defaultValue: teaching.title
+          })}
+        </h1>
+        <p className="teaching-description">
+          {t(`teachings.details.${id}.description`, {
+            defaultValue: teaching.description || ""
+          })}
+        </p>
 
         <div className="slides-wrapper">
           {visibleSlides.map((slide) => (
@@ -102,18 +114,21 @@ function TeachingDetails() {
             disabled={page === 1}
             onClick={() => setPage(page - 1)}
           >
-            Previous
+            {t("teachings.pagination.previous")}
           </button>
 
           <span>
-            Page {page} of {totalPages}
+            {t("teachings.pagination.pageOf", {
+              page,
+              total: totalPages
+            })}
           </span>
 
           <button
             disabled={page === totalPages}
             onClick={() => setPage(page + 1)}
           >
-            Next
+            {t("teachings.pagination.next")}
           </button>
         </div>
       </div>

@@ -13,69 +13,94 @@
 // export default Community;
 
 
+import { useTranslation } from "react-i18next";
 import "../../styles/history/Community.css";
 import topOrthodoxCountries from "../../data/history/topOrthodoxCountries";
 
 
 function Community() {
+  const { t } = useTranslation();
+
   return (
-    <section className="countries-section">
-  <h3>Top Orthodox Countries Worldwide</h3>
+    <section className="history-community countries-section" id="history-community">
+      <div className="community-intro">
+        <h2>
+          {t("history.community.title", {
+            defaultValue: "Global Orthodox Community"
+          })}
+        </h2>
+        <p>
+          {t("history.community.subtitle", {
+            defaultValue:
+              "Discover the nations where Orthodox Christianity has the strongest presence today."
+          })}
+        </p>
+      </div>
 
-  <div className="country-grid">
-    {topOrthodoxCountries.map((country) => (
-      <article className="country-card" key={country.id}>
-        {/* Media */}
-<div className="country-media">
-  {country.media.type === "video" ? (
-    <video
-      src={country.media.src}
-      poster={country.media.poster}
-      autoPlay
-      muted
-      loop
-      playsInline
-      onError={(e) => (e.currentTarget.style.display = "none")}
-    />
-  ) : (
-    <img
-      src={country.media.src}
-      alt={country.name}
-      onError={(e) => (e.currentTarget.style.display = "none")}
-    />
-  )}
-</div>
+      <h3>
+        {t("history.community.topCountries", {
+          defaultValue: "Top Orthodox Countries Worldwide"
+        })}
+      </h3>
 
+      <div className="country-grid">
+        {topOrthodoxCountries.map((country) => (
+          <article className="country-card" key={country.id}>
+            <div className="country-media">
+              {country.media.type === "video" ? (
+                <video
+                  src={country.media.src}
+                  poster={country.media.poster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  onError={(e) => (e.currentTarget.style.display = "none")}
+                />
+              ) : (
+                <img
+                  src={country.media.src}
+                  alt={t(`history.community.countries.${country.id}.name`)}
+                  onError={(e) => (e.currentTarget.style.display = "none")}
+                />
+              )}
+            </div>
 
-        {/* Info */}
-        <div className="country-info">
-          <span className="country-rank">#{country.rank}</span>
-          <h4>{country.name}</h4>
+            <div className="country-info">
+              <span className="country-rank">#{country.rank}</span>
+              <h4>
+                {t(`history.community.countries.${country.id}.name`)}
+              </h4>
 
-          <p className="church-name">
-            {country.statistics.primaryChurch}
-          </p>
+              <p className="church-name">
+                {t(`history.community.countries.${country.id}.primaryChurch`)}
+              </p>
 
-          <ul className="country-stats">
-            <li>
-              <strong>Orthodox:</strong>{" "}
-              {country.statistics.totalOrthodox.toLocaleString()}
-            </li>
-            <li>
-              <strong>Population:</strong>{" "}
-              {country.statistics.percentageOfPopulation}%
-            </li>
-          </ul>
+              <ul className="country-stats">
+                <li>
+                  <strong>
+                    {t("history.community.labels.orthodox")}
+                    :
+                  </strong>{" "}
+                  {country.statistics.totalOrthodox.toLocaleString()}
+                </li>
+                <li>
+                  <strong>
+                    {t("history.community.labels.population")}
+                    :
+                  </strong>{" "}
+                  {country.statistics.percentageOfPopulation}%
+                </li>
+              </ul>
 
-          <p className="country-description">
-            {country.description}
-          </p>
-        </div>
-      </article>
-    ))}
-  </div>
-</section>
-
+              <p className="country-description">
+                {t(`history.community.countries.${country.id}.description`)}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
 

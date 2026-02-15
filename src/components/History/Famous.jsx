@@ -77,17 +77,26 @@
 
 
 
+import { useTranslation } from "react-i18next";
 import "../../styles/history/Famous.css";
 import famousFigures from "../../data/history/famous";
 
 function Famous() {
+  const { t } = useTranslation();
+
   return (
-    <section className="history-famous">
+    <section className="history-famous" id="history-famous">
       <div className="famous-header">
-        <h2>Famous Figures of Orthodoxy</h2>
+        <h2>
+          {t("history.famous.title", {
+            defaultValue: "Famous Figures of Orthodoxy"
+          })}
+        </h2>
         <p>
-          Saints and theologians who shaped Orthodox faith, worship, and
-          tradition across centuries.
+          {t("history.famous.subtitle", {
+            defaultValue:
+              "Saints and theologians who shaped Orthodox faith, worship, and tradition across centuries."
+          })}
         </p>
       </div>
 
@@ -95,14 +104,25 @@ function Famous() {
         {famousFigures.map((person) => (
           <article key={person.id} className="famous-card">
             <div className="famous-avatar">
-              <img src={person.image} alt={person.name} />
+              <img
+                src={person.image}
+                alt={t(`history.famous.items.${person.id}.name`)}
+              />
             </div>
 
             <div className="famous-content">
-              <h3>{person.name}</h3>
-              <span className="title">{person.title}</span>
-              <span className="era">{person.era}</span>
-              <p>{person.description}</p>
+              <h3>
+                {t(`history.famous.items.${person.id}.name`)}
+              </h3>
+              <span className="title">
+                {t(`history.famous.items.${person.id}.title`)}
+              </span>
+              <span className="era">
+                {t(`history.famous.items.${person.id}.era`)}
+              </span>
+              <p>
+                {t(`history.famous.items.${person.id}.description`)}
+              </p>
             </div>
           </article>
         ))}

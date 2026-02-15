@@ -205,6 +205,8 @@
 
 
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { fetchChannelVideos } from "../services/youtube";
 import VideoCard from "../components/videos/VideoCard";
 import VideoSkeleton from "../components/videos/VideoSkeleton";
@@ -213,7 +215,8 @@ import "../styles/Videos.css";
 function Videos() {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [statusMessage, setStatusMessage] = useState(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     let mounted = true;
@@ -225,17 +228,23 @@ function Videos() {
 
       if (result.status === "ok") {
         setVideos(result.data);
-        setError(null);
+        setStatusMessage(null);
       }
 
       if (result.status === "warning") {
         setVideos(result.data);
-        setError(result.message);
+        setStatusMessage({
+          key: result.messageKey,
+          fallback: result.message
+        });
       }
 
       if (result.status === "error") {
         setVideos([]);
-        setError(result.message);
+        setStatusMessage({
+          key: result.messageKey,
+          fallback: result.message
+        });
       }
 
       setLoading(false);
@@ -253,40 +262,103 @@ function Videos() {
   if (loading) {
     return (
       <main className="videos-page">
-        <h1>Videos</h1>
-        <section className="videos-grid">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <VideoSkeleton key={i} />
-          ))}
-        </section>
+        <header className="videos-hero">
+          <nav className="videos-breadcrumbs" aria-label="Breadcrumb">
+            <Link to="/">{t("videos.breadcrumbs.home")}</Link>
+            <span aria-hidden="true">/</span>
+            <span>{t("videos.breadcrumbs.videos")}</span>
+          </nav>
+
+          <div className="videos-hero-content">
+            <h1>{t("videos.hero.title")}</h1>
+            <p>{t("videos.hero.subtitle")}</p>
+            <a className="videos-hero-cta" href="#videos-grid">
+              {t("videos.hero.cta")}
+            </a>
+          </div>
+        </header>
+
+        <div className="videos-container">
+          <header className="videos-section-header">
+            <h2>{t("videos.section.title")}</h2>
+            <p>{t("videos.section.loadingSubtitle")}</p>
+          </header>
+
+          <section className="videos-grid" id="videos-grid">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <VideoSkeleton key={i} />
+            ))}
+          </section>
+        </div>
       </main>
     );
   }
 
-  if (error && videos.length === 0) {
+  if (statusMessage && videos.length === 0) {
     return (
       <main className="videos-page">
-        <h1>Videos</h1>
-        <p className="error-message">{error}</p>
+        <header className="videos-hero">
+          <nav className="videos-breadcrumbs" aria-label="Breadcrumb">
+            <Link to="/">{t("videos.breadcrumbs.home")}</Link>
+            <span aria-hidden="true">/</span>
+            <span>{t("videos.breadcrumbs.videos")}</span>
+          </nav>
+
+          <div className="videos-hero-content">
+            <h1>{t("videos.hero.title")}</h1>
+            <p>{t("videos.hero.subtitle")}</p>
+          </div>
+        </header>
+
+        <div className="videos-container">
+          <p className="status-message status-error">
+            {t(statusMessage.key, {
+              defaultValue: statusMessage.fallback
+            })}
+          </p>
+        </div>
       </main>
     );
   }
 
   return (
     <main className="videos-page">
-      <h1>Videos</h1>
+      <header className="videos-hero">
+        <nav className="videos-breadcrumbs" aria-label="Breadcrumb">
+          <Link to="/">{t("videos.breadcrumbs.home")}</Link>
+          <span aria-hidden="true">/</span>
+          <span>{t("videos.breadcrumbs.videos")}</span>
+        </nav>
 
-      {error && (
-        <p className="warning-message">
-          {error}
-        </p>
-      )}
+        <div className="videos-hero-content">
+          <h1>{t("videos.hero.title")}</h1>
+          <p>{t("videos.hero.subtitle")}</p>
+          <a className="videos-hero-cta" href="#videos-grid">
+            {t("videos.hero.cta")}
+          </a>
+        </div>
+      </header>
 
-      <section className="videos-grid">
-        {videos.map(video => (
-          <VideoCard key={video.id} video={video} />
-        ))}
-      </section>
+      <div className="videos-container">
+        {statusMessage && (
+          <p className="status-message status-warning">
+            {t(statusMessage.key, {
+              defaultValue: statusMessage.fallback
+            })}
+          </p>
+        )}
+
+        <header className="videos-section-header">
+          <h2>{t("videos.section.title")}</h2>
+          <p>{t("videos.section.subtitle")}</p>
+        </header>
+
+        <section className="videos-grid" id="videos-grid">
+          {videos.map((video) => (
+            <VideoCard key={video.id} video={video} />
+          ))}
+        </section>
+      </div>
     </main>
   );
 }

@@ -101,333 +101,264 @@
 
 const kidase = {
   id: "kidase",
-  title: "ቅዳሴ",
-
   languages: {
     geez: {
-      title: "ግዕዝ",
       types: [
         {
           id: "zewetr",
-          title: "ስርአተ ቅዳሴ",
           image: "/kidase/zewetr/zewetr.jpg",
           slides: [
-        {
-      id: 1,
-      image: "/kidase/zewetr/slides/emne.jpg",
-      audio: "/kidase/zewetr/audio/emne.mp3",
-      caption: "እምነ በሐ"
-       },
-      {
-      id: 2,
-      image: "/kidase/zewetr/slides/kulu.png",
-      audio: "/kidase/zewetr/audio/kulu.mp3",
-      caption: "ኩሉ ዘገብራ"
-      },
-      {
-      id: 3,
-      image: "/kidase/zewetr/slides/03.jpg",
-      audio: "/kidase/zewetr/audio/03.mp3",
-      caption: "ሶስተኛ ቅዳሴ"
+            {
+              id: 1,
+              image: "/kidase/zewetr/slides/emne.jpg",
+              audio: "/kidase/zewetr/audio/emne.mp3"
+            },
+            {
+              id: 2,
+              image: "/kidase/zewetr/slides/kulu.png",
+              audio: "/kidase/zewetr/audio/kulu.mp3"
+            },
+            {
+              id: 3,
+              image: "/kidase/zewetr/slides/03.jpg",
+              audio: "/kidase/zewetr/audio/03.mp3"
+            }
+          ]
         },
-        ]
-        }
-        ,
-
-
         {
           id: "zewetr",
-          title: "ስርአተ ቅዳሴ",
           image: "/kidase/zewetr/zewetr.jpg",
           slides: [
-        {
-      id: 1,
-      image: "/kidase/zewetr/slides/emne.jpg",
-      audio: "/kidase/zewetr/audio/emne.mp3",
-      caption: "እምነ በሐ"
-       },
-      {
-      id: 2,
-      image: "/kidase/zewetr/slides/kulu.png",
-      audio: "/kidase/zewetr/audio/kulu.mp3",
-      caption: "ኩሉ ዘገብራ"
-      },
-      {
-      id: 3,
-      image: "/kidase/zewetr/slides/03.jpg",
-      audio: "/kidase/zewetr/audio/03.mp3",
-      caption: "ሶስተኛ ቅዳሴ"
+            {
+              id: 1,
+              image: "/kidase/zewetr/slides/emne.jpg",
+              audio: "/kidase/zewetr/audio/emne.mp3"
+            },
+            {
+              id: 2,
+              image: "/kidase/zewetr/slides/kulu.png",
+              audio: "/kidase/zewetr/audio/kulu.mp3"
+            },
+            {
+              id: 3,
+              image: "/kidase/zewetr/slides/03.jpg",
+              audio: "/kidase/zewetr/audio/03.mp3"
+            }
+          ]
         },
-        ]
-        },
-
         {
           id: "zewetr",
-          title: "ስርአተ ቅዳሴ",
           image: "/kidase/zewetr/zewetr.jpg",
           slides: [
-        {
-      id: 1,
-      image: "/kidase/zewetr/slides/emne.jpg",
-      audio: "/kidase/zewetr/audio/emne.mp3",
-      caption: "እምነ በሐ"
-       },
-      {
-      id: 2,
-      image: "/kidase/zewetr/slides/kulu.png",
-      audio: "/kidase/zewetr/audio/kulu.mp3",
-      caption: "ኩሉ ዘገብራ"
-      },
-      {
-      id: 3,
-      image: "/kidase/zewetr/slides/03.jpg",
-      audio: "/kidase/zewetr/audio/03.mp3",
-      caption: "ሶስተኛ ቅዳሴ"
+            {
+              id: 1,
+              image: "/kidase/zewetr/slides/emne.jpg",
+              audio: "/kidase/zewetr/audio/emne.mp3"
+            },
+            {
+              id: 2,
+              image: "/kidase/zewetr/slides/kulu.png",
+              audio: "/kidase/zewetr/audio/kulu.mp3"
+            },
+            {
+              id: 3,
+              image: "/kidase/zewetr/slides/03.jpg",
+              audio: "/kidase/zewetr/audio/03.mp3"
+            }
+          ]
         },
-        ]
-        },
-
         {
           id: "zewetr",
-          title: "ስርአተ ቅዳሴ",
           image: "/kidase/zewetr/zewetr.jpg",
           slides: [
-        {
-      id: 1,
-      image: "/kidase/zewetr/slides/emne.jpg",
-      audio: "/kidase/zewetr/audio/emne.mp3",
-      caption: "እምነ በሐ"
-       },
-      {
-      id: 2,
-      image: "/kidase/zewetr/slides/kulu.png",
-      audio: "/kidase/zewetr/audio/kulu.mp3",
-      caption: "ኩሉ ዘገብራ"
-      },
-      {
-      id: 3,
-      image: "/kidase/zewetr/slides/03.jpg",
-      audio: "/kidase/zewetr/audio/03.mp3",
-      caption: "ሶስተኛ ቅዳሴ"
+            {
+              id: 1,
+              image: "/kidase/zewetr/slides/emne.jpg",
+              audio: "/kidase/zewetr/audio/emne.mp3"
+            },
+            {
+              id: 2,
+              image: "/kidase/zewetr/slides/kulu.png",
+              audio: "/kidase/zewetr/audio/kulu.mp3"
+            },
+            {
+              id: 3,
+              image: "/kidase/zewetr/slides/03.jpg",
+              audio: "/kidase/zewetr/audio/03.mp3"
+            }
+          ]
         },
-        ]
-        },
-{
-          id: "zewetr",
-          title: "ስርአተ ቅዳሴ",
-          image: "/kidase/zewetr/zewetr.jpg",
-          slides: [
-        {
-      id: 1,
-      image: "/kidase/zewetr/slides/emne.jpg",
-      audio: "/kidase/zewetr/audio/emne.mp3",
-      caption: "እምነ በሐ"
-       },
-      {
-      id: 2,
-      image: "/kidase/zewetr/slides/kulu.png",
-      audio: "/kidase/zewetr/audio/kulu.mp3",
-      caption: "ኩሉ ዘገብራ"
-      },
-      {
-      id: 3,
-      image: "/kidase/zewetr/slides/03.jpg",
-      audio: "/kidase/zewetr/audio/03.mp3",
-      caption: "ሶስተኛ ቅዳሴ"
-        },
-        ]
-        },
-
         {
           id: "zewetr",
-          title: "ስርአተ ቅዳሴ",
           image: "/kidase/zewetr/zewetr.jpg",
           slides: [
-        {
-      id: 1,
-      image: "/kidase/zewetr/slides/emne.jpg",
-      audio: "/kidase/zewetr/audio/emne.mp3",
-      caption: "እምነ በሐ"
-       },
-      {
-      id: 2,
-      image: "/kidase/zewetr/slides/kulu.png",
-      audio: "/kidase/zewetr/audio/kulu.mp3",
-      caption: "ኩሉ ዘገብራ"
-      },
-      {
-      id: 3,
-      image: "/kidase/zewetr/slides/03.jpg",
-      audio: "/kidase/zewetr/audio/03.mp3",
-      caption: "ሶስተኛ ቅዳሴ"
+            {
+              id: 1,
+              image: "/kidase/zewetr/slides/emne.jpg",
+              audio: "/kidase/zewetr/audio/emne.mp3"
+            },
+            {
+              id: 2,
+              image: "/kidase/zewetr/slides/kulu.png",
+              audio: "/kidase/zewetr/audio/kulu.mp3"
+            },
+            {
+              id: 3,
+              image: "/kidase/zewetr/slides/03.jpg",
+              audio: "/kidase/zewetr/audio/03.mp3"
+            }
+          ]
         },
-        ]
-        },
-
         {
           id: "zewetr",
-          title: "ስርአተ ቅዳሴ",
           image: "/kidase/zewetr/zewetr.jpg",
           slides: [
-        {
-      id: 1,
-      image: "/kidase/zewetr/slides/emne.jpg",
-      audio: "/kidase/zewetr/audio/emne.mp3",
-      caption: "እምነ በሐ"
-       },
-      {
-      id: 2,
-      image: "/kidase/zewetr/slides/kulu.png",
-      audio: "/kidase/zewetr/audio/kulu.mp3",
-      caption: "ኩሉ ዘገብራ"
-      },
-      {
-      id: 3,
-      image: "/kidase/zewetr/slides/03.jpg",
-      audio: "/kidase/zewetr/audio/03.mp3",
-      caption: "ሶስተኛ ቅዳሴ"
+            {
+              id: 1,
+              image: "/kidase/zewetr/slides/emne.jpg",
+              audio: "/kidase/zewetr/audio/emne.mp3"
+            },
+            {
+              id: 2,
+              image: "/kidase/zewetr/slides/kulu.png",
+              audio: "/kidase/zewetr/audio/kulu.mp3"
+            },
+            {
+              id: 3,
+              image: "/kidase/zewetr/slides/03.jpg",
+              audio: "/kidase/zewetr/audio/03.mp3"
+            }
+          ]
         },
-        ]
-        },
-
         {
           id: "zewetr",
-          title: "ስርአተ ቅዳሴ",
           image: "/kidase/zewetr/zewetr.jpg",
           slides: [
-        {
-      id: 1,
-      image: "/kidase/zewetr/slides/emne.jpg",
-      audio: "/kidase/zewetr/audio/emne.mp3",
-      caption: "እምነ በሐ"
-       },
-      {
-      id: 2,
-      image: "/kidase/zewetr/slides/kulu.png",
-      audio: "/kidase/zewetr/audio/kulu.mp3",
-      caption: "ኩሉ ዘገብራ"
-      },
-      {
-      id: 3,
-      image: "/kidase/zewetr/slides/03.jpg",
-      audio: "/kidase/zewetr/audio/03.mp3",
-      caption: "ሶስተኛ ቅዳሴ"
+            {
+              id: 1,
+              image: "/kidase/zewetr/slides/emne.jpg",
+              audio: "/kidase/zewetr/audio/emne.mp3"
+            },
+            {
+              id: 2,
+              image: "/kidase/zewetr/slides/kulu.png",
+              audio: "/kidase/zewetr/audio/kulu.mp3"
+            },
+            {
+              id: 3,
+              image: "/kidase/zewetr/slides/03.jpg",
+              audio: "/kidase/zewetr/audio/03.mp3"
+            }
+          ]
         },
-        ]
-        },
-
         {
           id: "zewetr",
-          title: "ስርአተ ቅዳሴ",
           image: "/kidase/zewetr/zewetr.jpg",
           slides: [
+            {
+              id: 1,
+              image: "/kidase/zewetr/slides/emne.jpg",
+              audio: "/kidase/zewetr/audio/emne.mp3"
+            },
+            {
+              id: 2,
+              image: "/kidase/zewetr/slides/kulu.png",
+              audio: "/kidase/zewetr/audio/kulu.mp3"
+            },
+            {
+              id: 3,
+              image: "/kidase/zewetr/slides/03.jpg",
+              audio: "/kidase/zewetr/audio/03.mp3"
+            }
+          ]
+        },
         {
-      id: 1,
-      image: "/kidase/zewetr/slides/emne.jpg",
-      audio: "/kidase/zewetr/audio/emne.mp3",
-      caption: "እምነ በሐ"
-       },
-      {
-      id: 2,
-      image: "/kidase/zewetr/slides/kulu.png",
-      audio: "/kidase/zewetr/audio/kulu.mp3",
-      caption: "ኩሉ ዘገብራ"
-      },
-      {
-      id: 3,
-      image: "/kidase/zewetr/slides/03.jpg",
-      audio: "/kidase/zewetr/audio/03.mp3",
-      caption: "ሶስተኛ ቅዳሴ"
+          id: "zewetr",
+          image: "/kidase/zewetr/zewetr.jpg",
+          slides: [
+            {
+              id: 1,
+              image: "/kidase/zewetr/slides/emne.jpg",
+              audio: "/kidase/zewetr/audio/emne.mp3"
+            },
+            {
+              id: 2,
+              image: "/kidase/zewetr/slides/kulu.png",
+              audio: "/kidase/zewetr/audio/kulu.mp3"
+            },
+            {
+              id: 3,
+              image: "/kidase/zewetr/slides/03.jpg",
+              audio: "/kidase/zewetr/audio/03.mp3"
+            }
+          ]
         },
-        ]
-        },
-
-
-
         {
           id: "mariam",
-          title: "ማርያም ቅዳሴ",
           image: "/kidase/mariam/mariam.jpg",
           slides: [
-        {
-      id: 1,
-      image: "/kidase/mariam/slides/01.jpg",
-      audio: "/kidase/mariam/audio/01.mp3",
-      caption: "መጀመሪያ ቅዳሴ"
-       },
-      {
-      id: 2,
-      image: "/kidase/mariam/slides/02.jpeg",
-      audio: "/kidase/mariam/audio/02.mp3",
-      caption: "ሁለተኛ ቅዳሴ"
-      },
-      {
-      id: 3,
-      image: "/kidase/mariam/slides/03.jpg",
-      audio: "/kidase/mariam/audio/03.mp3",
-      caption: "ሶስተኛ ቅዳሴ"
-        },
-        ]
+            {
+              id: 1,
+              image: "/kidase/mariam/slides/01.jpg",
+              audio: "/kidase/mariam/audio/01.mp3"
+            },
+            {
+              id: 2,
+              image: "/kidase/mariam/slides/02.jpeg",
+              audio: "/kidase/mariam/audio/02.mp3"
+            },
+            {
+              id: 3,
+              image: "/kidase/mariam/slides/03.jpg",
+              audio: "/kidase/mariam/audio/03.mp3"
+            }
+          ]
         }
       ]
     },
-
-
-    
     ezel: {
-      title: "ዕዝል",
       types: [
         {
           id: "mariam",
-          title: "ማርያም ቅዳሴ",
           image: "/kidase/maryam/maryam.jpg",
           slides: [
-    {
-      id: 1,
-      image: "/kidase/zewetr/slides/01.jpg",
-      audio: "/kidase/zewetr/audio/01.mp3",
-      caption: "መጀመሪያ ቅዳሴ"
-    },
-    {
-      id: 2,
-      image: "/kidase/zewetr/slides/02.jpeg",
-      audio: "/kidase/zewetr/audio/02.mp3",
-      caption: "ሁለተኛ ቅዳሴ"
-    },
-    {
-      id: 3,
-      image: "/kidase/zewetr/slides/03.jpg",
-      audio: "/kidase/zewetr/audio/03.mp3",
-      caption: "ሶስተኛ ቅዳሴ"
-    }
-  ]
+            {
+              id: 1,
+              image: "/kidase/zewetr/slides/01.jpg",
+              audio: "/kidase/zewetr/audio/01.mp3"
+            },
+            {
+              id: 2,
+              image: "/kidase/zewetr/slides/02.jpeg",
+              audio: "/kidase/zewetr/audio/02.mp3"
+            },
+            {
+              id: 3,
+              image: "/kidase/zewetr/slides/03.jpg",
+              audio: "/kidase/zewetr/audio/03.mp3"
+            }
+          ]
         },
-
         {
           id: "zewetr",
-
-          title: "ዘወትር ቅዳሴ",
           image: "/kidase/zewetr/zewetr.jpg",
           slides: [
-    {
-      id: 1,
-      image: "/kidase/zewetr/slides/01.jpg",
-      audio: "/kidase/zewetr/audio/01.mp3",
-      caption: "መጀመሪያ ቅዳሴ"
-    },
-    {
-      id: 2,
-      image: "/kidase/zewetr/slides/02.jpeg",
-      audio: "/kidase/zewetr/audio/02.mp3",
-      caption: "ሁለተኛ ቅዳሴ"
-    },
-    {
-      id: 3,
-      image: "/kidase/zewetr/slides/03.jpg",
-      audio: "/kidase/zewetr/audio/03.mp3",
-      caption: "ሶስተኛ ቅዳሴ"
-    }
-  ]
+            {
+              id: 1,
+              image: "/kidase/zewetr/slides/01.jpg",
+              audio: "/kidase/zewetr/audio/01.mp3"
+            },
+            {
+              id: 2,
+              image: "/kidase/zewetr/slides/02.jpeg",
+              audio: "/kidase/zewetr/audio/02.mp3"
+            },
+            {
+              id: 3,
+              image: "/kidase/zewetr/slides/03.jpg",
+              audio: "/kidase/zewetr/audio/03.mp3"
+            }
+          ]
         }
       ]
     }

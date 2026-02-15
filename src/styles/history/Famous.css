@@ -1,6 +1,6 @@
 .history-famous {
   padding: 5rem 1.5rem;
-  background: linear-gradient(180deg, #fafafa, #f1f1f1);
+  background: transparent;
 }
 
 .famous-header {
@@ -12,11 +12,12 @@
 .famous-header h2 {
   font-size: 2rem;
   margin-bottom: 0.8rem;
+  color: var(--accent);
 }
 
 .famous-header p {
   font-size: 1rem;
-  opacity: 0.75;
+  color: var(--muted);
 }
 
 /* ===== GRID ===== */
@@ -28,11 +29,12 @@
 
 /* ===== CARD ===== */
 .famous-card {
-  background: white;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 18px;
   padding: 2rem 1.5rem 2.5rem;
   text-align: center;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
@@ -48,8 +50,8 @@
   margin: 0 auto 1.2rem;
   border-radius: 50%;
   overflow: hidden;
-  border: 4px solid #e6e6e6;
-  background: #ddd;
+  border: 4px solid rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .famous-avatar img {
@@ -62,23 +64,25 @@
 .famous-content h3 {
   font-size: 1.15rem;
   margin-bottom: 0.4rem;
+  color: var(--text-strong);
 }
 
 .famous-content .title {
   display: block;
   font-weight: 600;
   font-size: 0.9rem;
+  color: var(--accent);
 }
 
 .famous-content .era {
   display: block;
   font-size: 0.8rem;
-  opacity: 0.65;
+  color: var(--muted);
   margin-bottom: 0.8rem;
 }
 
 .famous-content p {
   font-size: 0.9rem;
   line-height: 1.6;
-  opacity: 0.85;
+  color: var(--muted);
 }

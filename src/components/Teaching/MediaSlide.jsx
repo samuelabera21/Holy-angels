@@ -84,9 +84,12 @@
 
 
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./MediaSlide.css";
 
 function MediaSlide({ slide }) {
+  const { t } = useTranslation();
+
   return (
     <Link to={`/teachings/kidase/${slide.id}`} className="media-card">
       <div className="media-image">
@@ -95,7 +98,7 @@ function MediaSlide({ slide }) {
 
       <div className="media-body">
         <h3>{slide.caption}</h3>
-        <span className="play-hint">▶ Listen</span>
+        <span className="play-hint">▶ {t("teachings.media.listen")}</span>
       </div>
     </Link>
   );

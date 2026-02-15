@@ -66,7 +66,9 @@
 
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import kidase from "../data/teachings/kidase";
+import "../styles/KidaseTypesSimple.css";
 import "../styles/KidaseTypeDetailsSimple.css";
 
 const ITEMS_PER_PAGE = 6;
@@ -74,51 +76,91 @@ const ITEMS_PER_PAGE = 6;
 function KidaseTypeDetails() {
   const { lang, typeId } = useParams();
   const [page, setPage] = useState(1);
+  const { t } = useTranslation();
 
   const language = kidase.languages[lang];
-  if (!language) return <p>Language not found</p>;
+  if (!language) return <p>{t("kidase.errors.languageNotFound")}</p>;
 
   const type = language.types.find(t => t.id === typeId);
-  if (!type) return <p>Kidase type not found</p>;
+  if (!type) return <p>{t("kidase.errors.typeNotFound")}</p>;
+
+  const languageTitle = t(`kidase.languages.${lang}`);
+  const typeTitle = t(`kidase.content.${lang}.types.${typeId}.title`);
 
   const totalPages = Math.ceil(type.slides.length / ITEMS_PER_PAGE);
   const start = (page - 1) * ITEMS_PER_PAGE;
   const visibleSlides = type.slides.slice(start, start + ITEMS_PER_PAGE);
 
   return (
-    <div className="kidase-type-simple">
-      <div className="kt-container">
-        <header className="kt-header">
-          <h1>{type.title}</h1>
-          <p className="kt-sub">Choose a section to listen and continue the Kidase</p>
+    <div className="kidase-simple-page">
+      <header className="kidase-types-hero">
+        <nav className="kidase-types-breadcrumbs" aria-label="Breadcrumb">
+          <Link to="/">{t("kidase.breadcrumbs.home")}</Link>
+          <span aria-hidden="true">/</span>
+          <Link to="/teachings">{t("kidase.breadcrumbs.teachings")}</Link>
+          <span aria-hidden="true">/</span>
+          <Link to="/teachings/kidase">{t("kidase.breadcrumbs.kidase")}</Link>
+          <span aria-hidden="true">/</span>
+          <Link to={`/teachings/kidase/${lang}`}>{languageTitle}</Link>
+          <span aria-hidden="true">/</span>
+          <span>{typeTitle}</span>
+        </nav>
+
+        <div className="kidase-types-hero-content">
+          <h1>{typeTitle}</h1>
+          <p>{t("kidase.typeDetails.heroSubtitle")}</p>
+        </div>
+      </header>
+
+      <div className="container">
+        <header className="page-header">
+          <h2>{t("kidase.typeDetails.sectionTitle")}</h2>
+          <p className="subtitle">{t("kidase.typeDetails.sectionSubtitle")}</p>
         </header>
 
-        <div className="slides-wrapper">
-          {visibleSlides.map((slide) => (
-            <Link
-              key={slide.id}
-              to={`/teachings/kidase/${lang}/${typeId}/${slide.id}`}
-              className="media-card-simple"
-            >
-              <div className="mc-img">
-                <img src={slide.image} alt={slide.caption} />
-              </div>
-              <h3>{slide.caption}</h3>
-            </Link>
-          ))}
+        <div className="cards-grid kidase-slides-grid">
+          {visibleSlides.map((slide) => {
+            const slideCaption = t(
+              `kidase.content.${lang}.types.${typeId}.slides.${slide.id}.caption`
+            );
+            return (
+              <Link
+                key={slide.id}
+                to={`/teachings/kidase/${lang}/${typeId}/${slide.id}`}
+                className="teach-card"
+              >
+                <div className="card-img-wrap">
+                  <img src={slide.image} alt={slideCaption} />
+                </div>
+                <div className="card-content">
+                  <h3 className="card-title">{slideCaption}</h3>
+                  <p className="card-desc">
+                    {t("kidase.typeDetails.cardDescription")}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
-        <div className="pagination">
-          <button disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
-            Previous
-          </button>
+        {totalPages > 1 && (
+          <div className="kidase-pagination">
+            <button disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
+              {t("kidase.pagination.previous")}
+            </button>
 
-          <span>Page {page} of {totalPages}</span>
+            <span>
+              {t("kidase.pagination.pageOf", {
+                page,
+                total: totalPages
+              })}
+            </span>
 
-          <button disabled={page === totalPages} onClick={() => setPage((p) => p + 1)}>
-            Next
-          </button>
-        </div>
+            <button disabled={page === totalPages} onClick={() => setPage((p) => p + 1)}>
+              {t("kidase.pagination.next")}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -116,9 +116,11 @@
 
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import "../../styles/Values.css";
 
 function Values() {
+  const { t } = useTranslation();
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -161,37 +163,37 @@ function Values() {
       {/* Content */}
       <div className="values-content">
         <div className="values-panel">
-          <h2>ቤተክርስቲያን</h2>
+          <h2>{t("home.values.title")}</h2>
 
           <div className="values-text-column">
             <div className="value-card">
-              <h3>እምነት</h3>
-              <p>እምነት በእግዚአብሔር እና በእርስ በርስ እርምጃ</p>
+              <h3>{t("home.values.items.faith")}</h3>
+              {/* <p>እምነት በእግዚአብሔር እና በእርስ በርስ እርምጃ</p> */}
             </div>
 
             <div className="value-card">
-              <h3>ተስፋ</h3>
-              <p>ተስፋ እና መንፈሳዊ ምክር የሕይወት መንገድ</p>
+              <h3>{t("home.values.items.hope")}</h3>
+              {/* <p>ተስፋ እና መንፈሳዊ ምክር የሕይወት መንገድ</p> */}
             </div>
 
             <div className="value-card">
-              <h3>ፍቅር</h3>
-              <p>ፍቅር ለሰው ሁሉ የማካተት ሥርዓት</p>
+              <h3>{t("home.values.items.love")}</h3>
+              {/* <p>ፍቅር ለሰው ሁሉ የማካተት ሥርዓት</p> */}
             </div>
 
             <div className="value-card">
-              <h3>ቃል</h3>
-              <p>ቃል እና ቅዱስ ሥርዓት የእምነት መሠረት</p>
+              <h3>{t("home.values.items.word")}</h3>
+              {/* <p>ቃል እና ቅዱስ ሥርዓት የእምነት መሠረት</p> */}
             </div>
 
             <div className="value-card">
-              <h3>እውነት</h3>
-              <p>እውነት እና ትሕትና በአካል እና በልብ</p>
+              <h3>{t("home.values.items.truth")}</h3>
+              {/* <p>እውነት እና ትሕትና በአካል እና በልብ</p> */}
             </div>
 
             <div className="value-card">
-              <h3>አክብር</h3>
-              <p>ክብር ለአምላክ እና ለሰዎች</p>
+              <h3>{t("home.values.items.honor")}</h3>
+              {/* <p>ክብር ለአምላክ እና ለሰዎች</p> */}
             </div>
           </div>
         </div>

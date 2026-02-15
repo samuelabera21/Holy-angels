@@ -13,24 +13,34 @@
 // export default InEthiopia;
 
 
+import { useTranslation } from "react-i18next";
 import "../../styles/history/InEthiopia.css";
 
 function InEthiopia() {
+  const { t } = useTranslation();
+
   return (
-    <section className="history-ethiopia">
+    <section className="history-ethiopia" id="history-ethiopia">
       <div className="ethiopia-container">
         {/* Text */}
         <div className="ethiopia-text">
-          <h2>Orthodoxy in Ethiopia</h2>
+          <h2>
+            {t("history.ethiopia.title", {
+              defaultValue: "Orthodoxy in Ethiopia"
+            })}
+          </h2>
           <p>
-            Christianity reached Ethiopia in the early centuries through
-            apostolic tradition. The Ethiopian Orthodox Tewahedo Church became
-            a pillar of faith, culture, and national identity.
+            {t("history.ethiopia.paragraphs.0", {
+              defaultValue:
+                "Christianity reached Ethiopia in the early centuries through apostolic tradition. The Ethiopian Orthodox Tewahedo Church became a pillar of faith, culture, and national identity."
+            })}
           </p>
 
           <p>
-            For centuries, the Church preserved scripture, tradition, and
-            spiritual life, shaping Ethiopian history and civilization.
+            {t("history.ethiopia.paragraphs.1", {
+              defaultValue:
+                "For centuries, the Church preserved scripture, tradition, and spiritual life, shaping Ethiopian history and civilization."
+            })}
           </p>
         </div>
 

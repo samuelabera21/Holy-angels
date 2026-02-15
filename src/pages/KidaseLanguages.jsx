@@ -1,22 +1,67 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import useGlobalReveal from "../hooks/useGlobalReveal";
+import "../styles/reveal.css";
 import "../styles/Teachings.css";
 
 function KidaseLanguages() {
+  useGlobalReveal(".kidase-page");
+  const { t } = useTranslation();
+
   return (
-    <div className="teaching-page">
-      <video className="bg-video" autoPlay muted loop playsInline>
-        <source src="/Teaching/teaching.mp4" type="video/mp4" />
-      </video>
+    <div className="kidase-page">
+      <header className="kidase-hero" id="kidase-top">
+        <nav className="kidase-breadcrumbs" aria-label="Breadcrumb">
+          <Link to="/">{t("kidase.breadcrumbs.home")}</Link>
+          <span aria-hidden="true">/</span>
+          <Link to="/teachings">{t("kidase.breadcrumbs.teachings")}</Link>
+          <span aria-hidden="true">/</span>
+          <span>{t("kidase.breadcrumbs.kidase")}</span>
+        </nav>
 
-      <div className="overlay"></div>
+        <div className="kidase-hero-content">
+          <h1>{t("kidase.hero.title")}</h1>
+          <p>{t("kidase.hero.subtitle")}</p>
+          <a className="kidase-hero-cta" href="#languages">
+            {t("kidase.hero.cta")}
+          </a>
+        </div>
+      </header>
 
-      <div className="teaching-content">
-        <h1>ቅዳሴ</h1>
-        <p>Choose language:</p>
+      <div className="kidase-layout">
+        <aside className="kidase-toc">
+          <h2>{t("kidase.toc.title")}</h2>
+          <a href="#languages">{t("kidase.toc.languages")}</a>
+          <a href="#about">{t("kidase.toc.about")}</a>
+          <a href="#resources">{t("kidase.toc.resources")}</a>
+        </aside>
 
-        <div className="teaching-links">
-          <Link to="/teachings/kidase/geez">ግዕዝ</Link>
-          <Link to="/teachings/kidase/ezel">ዕዝል</Link>
+        <div className="kidase-content">
+          <section id="languages" className="kidase-section">
+            <h2>{t("kidase.sections.languages.title")}</h2>
+            <p>{t("kidase.sections.languages.subtitle")}</p>
+            <div className="kidase-links">
+              <Link to="/teachings/kidase/geez">
+                {t("kidase.languages.geez")}
+              </Link>
+              <Link to="/teachings/kidase/ezel">
+                {t("kidase.languages.ezel")}
+              </Link>
+            </div>
+          </section>
+
+          <section id="about" className="kidase-section">
+            <h2>{t("kidase.sections.about.title")}</h2>
+            <p>{t("kidase.sections.about.body")}</p>
+          </section>
+
+          <section id="resources" className="kidase-section">
+            <h2>{t("kidase.sections.resources.title")}</h2>
+            <p>{t("kidase.sections.resources.body")}</p>
+            <Link className="kidase-inline-link" to="/teachings">
+              {t("kidase.sections.resources.link")}
+            </Link>
+          </section>
         </div>
       </div>
     </div>

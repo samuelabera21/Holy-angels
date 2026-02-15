@@ -4,20 +4,21 @@
 
 .history-community {
   padding: 6rem 2rem;
-  background: #fafafa;
+  background: transparent;
   text-align: center;
 }
 
 .history-community h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: var(--accent);
 }
 
 .community-intro {
   max-width: 900px;
   margin: 0 auto 4rem;
   font-size: 1.05rem;
-  color: #555;
+  color: var(--muted);
 }
 
 /* ===============================
@@ -36,8 +37,9 @@
 .continent-card {
   padding: 2.2rem;
   border-radius: 18px;
-  background: white;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 /* ===============================
@@ -47,6 +49,9 @@
 .countries-section h3 {
   font-size: 2rem;
   margin-bottom: 3rem;
+  color: var(--accent);
+  text-align: center;
+  margin-top: 60px;
 }
 
 .country-grid {
@@ -59,10 +64,11 @@
 }
 
 .country-card {
-  background: white;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
   transition: transform 0.4s ease;
 }
 
@@ -73,7 +79,7 @@
 /* Media placeholder */
 .country-media {
   height: 180px;
-  background: #ddd;
+  background: rgba(0, 0, 0, 0.06);
 }
 
 /* Info */
@@ -85,23 +91,24 @@
 .country-info h4 {
   font-size: 1.2rem;
   margin-bottom: 0.3rem;
+  color: var(--text-strong);
 }
 
 .country-info p {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--muted);
 }
 
 .country-info span {
   font-size: 0.85rem;
-  color: #8a6d3b;
+  color: var(--accent);
 }
 
 .country-media {
   position: relative;
   height: 220px;
   overflow: hidden;
-  background: #000;
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .country-media img,
@@ -116,14 +123,14 @@
   display: inline-block;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #8a6d3b;
+  color: var(--accent);
   margin-bottom: 0.3rem;
 }
 
 /* Church name */
 .church-name {
   font-size: 0.9rem;
-  color: #555;
+  color: var(--muted);
   margin-bottom: 0.8rem;
 }
 
@@ -136,21 +143,17 @@
 
 .country-stats li {
   font-size: 0.85rem;
-  color: #444;
+  color: var(--text-strong);
 }
 
 /* Description */
 .country-description {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--muted);
   line-height: 1.5;
 }
 .country-card.highlight {
-  border: 2px solid #8a6d3b;
-  box-shadow: 0 18px 45px rgba(138, 109, 59, 0.35);
-}
-h3{
-  text-align: center;
-  margin-top: 80px;
+  border: 2px solid var(--accent);
+  box-shadow: 0 18px 45px rgba(244, 196, 48, 0.22);
 }
 

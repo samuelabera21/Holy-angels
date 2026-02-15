@@ -1,3 +1,4 @@
+import { Trans, useTranslation } from "react-i18next";
 import heroImage from "../../assets/images/hero/hero-bg-img.jpg";
 import "../../styles/Hero.css";
 
@@ -12,22 +13,24 @@ import "../../styles/Hero.css";
 */
 
 function Hero() {
+  const { t } = useTranslation();
+
   return (
-    <section className="hero"    style={{ "--hero-bg": `url(${heroImage})` }}>
+    <section className="hero" style={{ "--hero-bg": `url(${heroImage})` }}>
       <div className="hero-content">
         <h1>
-          አናታቺን  <br />
-          የኢትዮጵያ ኦርቶዶክስ  ተዋህዶ በተክርስቲያን
+          <Trans i18nKey="home.hero.title">
+            አናታቺን <br />
+            የኢትዮጵያ ኦርቶዶክስ ተዋህዶ ቤተክርስቲያን
+          </Trans>
         </h1>
 
-        <p>
-         የቤተክርስቲያንን ትምህርት አዚህ ይማሩ  ያገልግሉ
-        </p>
+        <p>{t("home.hero.subtitle")}</p>
 
         <div className="hero-socials">
-          <a href="#">Facebook</a>
-          <a href="#">YouTube</a>
-          <a href="#">Telegram</a>
+          <a href="#">{t("home.hero.socials.facebook")}</a>
+          <a href="#">{t("home.hero.socials.youtube")}</a>
+          <a href="#">{t("home.hero.socials.telegram")}</a>
         </div>
       </div>
     </section>

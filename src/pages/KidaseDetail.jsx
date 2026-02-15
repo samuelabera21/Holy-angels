@@ -43,19 +43,21 @@
 
 
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import kidase from "../data/teachings/kidase";
 import "../styles/KidaseDetail.css";
 
 function KidaseDetail() {
   const { slideId } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const currentIndex = kidase.slides.findIndex(
     (s) => String(s.id) === slideId
   );
 
   const slide = kidase.slides[currentIndex];
-  if (!slide) return <p>Kidase not found</p>;
+  if (!slide) return <p>{t("kidase.errors.kidaseNotFound")}</p>;
 
   const prev = kidase.slides[currentIndex - 1];
   const next = kidase.slides[currentIndex + 1];
@@ -81,7 +83,7 @@ function KidaseDetail() {
             disabled={!prev}
             onClick={() => navigate(`/teachings/kidase/${prev.id}`)}
           >
-            ◀ Previous
+            {t("kidase.pagination.previous")}
           </button>
 
           <span>
@@ -92,7 +94,7 @@ function KidaseDetail() {
             disabled={!next}
             onClick={() => navigate(`/teachings/kidase/${next.id}`)}
           >
-            Next ▶
+            {t("kidase.pagination.next")}
           </button>
         </div>
       </div>

@@ -240,7 +240,8 @@
 
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { fetchChannelVideos } from "../services/youtube";
 import VideoCard from "../components/videos/VideoCard";
 import "../styles/VideoDetails.css";
@@ -249,14 +250,29 @@ function VideoDetails() {
   const { id } = useParams();
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [statusMessage, setStatusMessage] = useState(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function loadVideos() {
       const result = await fetchChannelVideos(9);
 
       if (result.status === "error") {
-        setError(result.message);
+        setStatusMessage({
+          key: result.messageKey,
+          fallback: result.message
+        });
+      }
+
+      if (result.status === "warning") {
+        setStatusMessage({
+          key: result.messageKey,
+          fallback: result.message
+        });
+      }
+
+      if (result.status === "ok") {
+        setStatusMessage(null);
       }
 
       setVideos(result.data);
@@ -266,41 +282,117 @@ function VideoDetails() {
     loadVideos();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <main className="video-details-page">
+        <header className="video-details-hero">
+          <nav className="video-details-breadcrumbs" aria-label="Breadcrumb">
+            <Link to="/">{t("videoDetails.breadcrumbs.home")}</Link>
+            <span aria-hidden="true">/</span>
+            <Link to="/videos">{t("videoDetails.breadcrumbs.videos")}</Link>
+            <span aria-hidden="true">/</span>
+            <span>{t("videoDetails.status.loadingBreadcrumb")}</span>
+          </nav>
+
+          <div className="video-details-hero-content">
+            <h1>{t("videoDetails.status.loadingTitle")}</h1>
+            <p>{t("videoDetails.status.loadingSubtitle")}</p>
+          </div>
+        </header>
+
+        <div className="video-details-container">
+          <p className="status-message">
+            {t("videoDetails.status.loadingMessage")}
+          </p>
+        </div>
+      </main>
+    );
+  }
 
   const video = videos.find(v => v.id === id);
   const relatedVideos = videos.filter(v => v.id !== id);
 
   if (!video) {
-    return <h2>Video not found</h2>;
+    return (
+      <main className="video-details-page">
+        <header className="video-details-hero">
+          <nav className="video-details-breadcrumbs" aria-label="Breadcrumb">
+            <Link to="/">{t("videoDetails.breadcrumbs.home")}</Link>
+            <span aria-hidden="true">/</span>
+            <Link to="/videos">{t("videoDetails.breadcrumbs.videos")}</Link>
+            <span aria-hidden="true">/</span>
+            <span>{t("videoDetails.status.notFoundBreadcrumb")}</span>
+          </nav>
+
+          <div className="video-details-hero-content">
+            <h1>{t("videoDetails.status.notFoundTitle")}</h1>
+            <p>{t("videoDetails.status.notFoundSubtitle")}</p>
+          </div>
+        </header>
+
+        <div className="video-details-container">
+          <p className="status-message status-error">
+            {t("videoDetails.status.notFoundMessage")}
+          </p>
+        </div>
+      </main>
+    );
   }
 
   return (
-    <main className="video-details">
-      <h1>{video.title}</h1>
+    <main className="video-details-page">
+      <header className="video-details-hero">
+        <nav className="video-details-breadcrumbs" aria-label="Breadcrumb">
+          <Link to="/">{t("videoDetails.breadcrumbs.home")}</Link>
+          <span aria-hidden="true">/</span>
+          <Link to="/videos">{t("videoDetails.breadcrumbs.videos")}</Link>
+          <span aria-hidden="true">/</span>
+          <span>{video.title}</span>
+        </nav>
 
-      <div className="video-player">
-        <iframe
-          src={`https://www.youtube.com/embed/${video.id}`}
-          title={video.title}
-          allowFullScreen
-        />
-      </div>
-
-      {error && (
-        <p className="warning-message">{error}</p>
-      )}
-
-      <p className="video-description">{video.description}</p>
-
-      <section className="related-videos">
-        <h2>Related Videos</h2>
-        <div className="videos-grid">
-          {relatedVideos.map(v => (
-            <VideoCard key={v.id} video={v} />
-          ))}
+        <div className="video-details-hero-content">
+          <h1>{video.title}</h1>
+          <p>{t("videoDetails.hero.subtitle")}</p>
         </div>
-      </section>
+      </header>
+
+      <div className="video-details-container">
+        <div className="video-details-body">
+          <div className="video-details-player">
+            <iframe
+              src={`https://www.youtube.com/embed/${video.id}`}
+              title={video.title}
+              allowFullScreen
+            />
+          </div>
+
+          <aside className="video-details-info">
+            <h2>{t("videoDetails.aboutTitle")}</h2>
+            <p className="video-description">{video.description}</p>
+
+            {statusMessage && (
+              <p className="status-message status-warning">
+                {t(statusMessage.key, {
+                  defaultValue: statusMessage.fallback
+                })}
+              </p>
+            )}
+          </aside>
+        </div>
+
+        <section className="related-videos">
+          <header className="related-header">
+            <h2>{t("videoDetails.related.title")}</h2>
+            <p>{t("videoDetails.related.subtitle")}</p>
+          </header>
+
+          <div className="videos-grid">
+            {relatedVideos.map((v) => (
+              <VideoCard key={v.id} video={v} />
+            ))}
+          </div>
+        </section>
+      </div>
     </main>
   );
 }

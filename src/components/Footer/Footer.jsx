@@ -1,44 +1,49 @@
 import { NavLink } from "react-router-dom";
+import { navLinks } from "../../data/navigation";
+import { useTranslation } from "react-i18next";
 import "./Footer.css";
 
 function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer">
       <div className="footer-container">
 
         {/* ================= BRAND ================= */}
         <div className="footer-brand">
-          <h3>Orthodox Church</h3>
-          <p>
-            A place of faith, hope, love, and spiritual growth.
-          </p>
+          <h3>{t("footer.brand.title")}</h3>
+          <p>{t("footer.brand.tagline")}</p>
         </div>
 
         {/* ================= LINKS ================= */}
         <div className="footer-links">
-          <h4>Quick Links</h4>
+          <h4>{t("footer.links.title")}</h4>
           <ul>
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/about">About</NavLink></li>
-            <li><NavLink to="/videos">Videos</NavLink></li>
-            <li><NavLink to="/contact">Contact</NavLink></li>
-             <li><NavLink to="/teachings">Teachings</NavLink></li>
+            {navLinks.map((link) => (
+              <li key={link.path}>
+                <NavLink to={link.path}>{t(`nav.links.${link.id}`)}</NavLink>
+              </li>
+            ))}
+            <li>
+              <NavLink to="/teachings/kidase">{t("footer.links.kidase")}</NavLink>
+            </li>
           </ul>
         </div>
 
         {/* ================= SOCIALS ================= */}
         <div className="footer-socials">
-          <h4>Connect</h4>
+          <h4>{t("footer.socials.title")}</h4>
           <div className="social-links">
             {/* External links still use <a> */}
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-              Facebook
+              {t("footer.socials.facebook")}
             </a>
             <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-              YouTube
+              {t("footer.socials.youtube")}
             </a>
             <a href="https://telegram.org" target="_blank" rel="noopener noreferrer">
-              Telegram
+              {t("footer.socials.telegram")}
             </a>
           </div>
         </div>
@@ -48,7 +53,9 @@ function Footer() {
       {/* ================= BOTTOM ================= */}
       <div className="footer-bottom">
         <p>
-          © {new Date().getFullYear()} Orthodox Church. All rights reserved.
+          {t("footer.bottom", {
+            year: new Date().getFullYear()
+          })}
         </p>
       </div>
     </footer>

@@ -16,7 +16,7 @@
 
   /* lighter top fade, stronger at bottom to keep text readable but let image show through */
   background:
-    linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.55) 100%),
+    linear-gradient(180deg, var(--hero-shade-soft) 0%, var(--hero-shade-strong) 100%),
     var(--hero-bg);
 
   background-size: cover;
@@ -35,7 +35,7 @@
 .hero-content {
   max-width: 980px;
   padding: 0 2rem;
-  color: #ffffff;
+  color: var(--hero-text);
   backface-visibility: hidden;
 }
 
@@ -45,9 +45,9 @@
   font-weight: 700;
   line-height: 1.14;
   margin-bottom: 0.9rem;
-  color: #fff;
+  color: var(--hero-text);
   letter-spacing: 0.2px;
-  text-shadow: 0 6px 18px rgba(0,0,0,0.55);
+  text-shadow: 0 6px 18px var(--hero-text-shadow);
 }
 
 /* small decorative accent under the main title */
@@ -58,7 +58,7 @@
   height: 4px;
   margin: 14px auto 0;
   border-radius: 4px;
-  background: linear-gradient(90deg, rgba(176,137,59,1), rgba(200,170,80,0.9));
+  background: linear-gradient(90deg, var(--accent), rgba(200, 170, 80, 0.9));
   box-shadow: 0 6px 18px rgba(176,137,59,0.12);
 }
 
@@ -68,8 +68,8 @@
   line-height: 1.7;
   max-width: 720px;
   margin: 0 auto 1.8rem;
-  color: rgba(235,235,235,0.92);
-  text-shadow: 0 3px 10px rgba(0,0,0,0.35);
+  color: var(--hero-text-muted);
+  text-shadow: 0 3px 10px var(--hero-text-shadow-soft);
 }
 
 /* ===============================
@@ -83,7 +83,7 @@
 
 .hero-socials a {
   text-decoration: none;
-  color: #ffffff;
+  color: var(--hero-link);
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.6px;
@@ -96,8 +96,8 @@
 
 /* Hover effect */
 .hero-socials a:hover {
-  border-color: #f4c430; /* gold accent */
-  color: #f4c430;
+  border-color: var(--accent);
+  color: var(--hero-link-hover);
 }
 
 /* ===============================

@@ -13,8 +13,12 @@
 
 // export default Hero;
 
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import "../../styles/history/Hero.css";
 function Hero() {
+  const { t } = useTranslation();
+
   return (
     <section className="history-hero">
       {/* Background video */}
@@ -33,11 +37,26 @@ function Hero() {
 
       {/* Content */}
       <div className="history-hero-content">
-        <h1>Ethiopian Orthodox Tewahedo Church</h1>
+        <nav className="history-breadcrumbs" aria-label="Breadcrumb">
+          <Link to="/">Home</Link>
+          <span aria-hidden="true">/</span>
+          <span>{t("history.breadcrumb", { defaultValue: "History" })}</span>
+        </nav>
+
+        <h1>
+          {t("history.hero.title", {
+            defaultValue: "Ethiopian Orthodox Tewahedo Church"
+          })}
+        </h1>
         <p>
-          A faith rooted in apostolic tradition, history, and spiritual life
-          passed through generations.
+          {t("history.hero.subtitle", {
+            defaultValue:
+              "A faith rooted in apostolic tradition, history, and spiritual life passed through generations."
+          })}
         </p>
+        <a className="history-hero-cta" href="#history-ethiopia">
+          {t("history.hero.cta", { defaultValue: "Explore the History" })}
+        </a>
       </div>
     </section>
   );
