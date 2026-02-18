@@ -11,6 +11,9 @@ import ScrollToTop from "./components/ScrollToTop";
 import ScrollUpButton from "./components/ScrollUpButton";
 import HolyAngelDetail from "./pages/HolyAngelDetail";
 import EventDetail from "./pages/EventDetail";
+import Books from "./pages/Books";
+import BookCategoryDetails from "./pages/BookCategoryDetails";
+import BookReader from "./pages/BookReader";
 
 
 
@@ -46,6 +49,9 @@ function App() {
           
           <Route path="/videos" element={<Videos />} />
           <Route path="/teachings" element={<Teachings />} />
+          <Route path="/books" element={<Books />} />
+          <Route path="/books/:categoryId" element={<BookCategoryDetails />} />
+          <Route path="/books/read/:categoryId/:bookId" element={<BookReader />} />
 
 
 <Route path="/teachings/kidase" element={<KidaseLanguages />} />
