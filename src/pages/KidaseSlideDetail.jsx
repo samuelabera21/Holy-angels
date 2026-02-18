@@ -113,6 +113,7 @@ function KidaseSlideDetail() {
   const slideCaption = t(
     `kidase.content.${lang}.types.${typeId}.slides.${slide.id}.caption`
   );
+  const heroImage = "/kidase/geez/hero.png";
 
   useEffect(() => {
     const a = audioRef.current;
@@ -180,7 +181,20 @@ function KidaseSlideDetail() {
 
   return (
     <div className="kidase-simple-page kidase-slide-simple">
-      <header className="kidase-types-hero">
+      <header className="kidase-types-hero kidase-types-hero--image">
+        <div
+          className="kidase-types-hero-media"
+          aria-hidden="true"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        >
+          <img
+            src={heroImage}
+            alt=""
+            className="kidase-types-hero-image"
+          />
+          <div className="kidase-types-hero-overlay" />
+        </div>
+
         <nav className="kidase-types-breadcrumbs" aria-label="Breadcrumb">
           <Link to="/">{t("kidase.breadcrumbs.home")}</Link>
           <span aria-hidden="true">/</span>

@@ -205,7 +205,6 @@
 
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { fetchChannelVideos } from "../services/youtube";
 import VideoCard from "../components/videos/VideoCard";
@@ -217,6 +216,31 @@ function Videos() {
   const [loading, setLoading] = useState(true);
   const [statusMessage, setStatusMessage] = useState(null);
   const { t } = useTranslation();
+  const heroImage = "/video/video.jpg";
+  const heroTitle = "ቪዲዮዎች";
+  const heroSubtitle = "ትምህርቶች፣ ስብከቶች እና መንፈሳዊ መመሪያዎች።";
+  const heroCta = "ቪዲዮዎችን ይመልከቱ";
+
+  const renderHero = () => (
+    <header className="videos-hero" id="videos-top">
+      <div
+        className="videos-hero-media"
+        aria-hidden="true"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      >
+        <img src={heroImage} alt="" className="videos-hero-image" />
+        <div className="videos-hero-overlay" />
+      </div>
+
+      <div className="videos-hero-content">
+        <h1>{heroTitle}</h1>
+        <p>{heroSubtitle}</p>
+        <a className="videos-hero-cta" href="#videos-grid">
+          {heroCta}
+        </a>
+      </div>
+    </header>
+  );
 
   useEffect(() => {
     let mounted = true;
@@ -262,21 +286,7 @@ function Videos() {
   if (loading) {
     return (
       <main className="videos-page">
-        <header className="videos-hero">
-          <nav className="videos-breadcrumbs" aria-label="Breadcrumb">
-            <Link to="/">{t("videos.breadcrumbs.home")}</Link>
-            <span aria-hidden="true">/</span>
-            <span>{t("videos.breadcrumbs.videos")}</span>
-          </nav>
-
-          <div className="videos-hero-content">
-            <h1>{t("videos.hero.title")}</h1>
-            <p>{t("videos.hero.subtitle")}</p>
-            <a className="videos-hero-cta" href="#videos-grid">
-              {t("videos.hero.cta")}
-            </a>
-          </div>
-        </header>
+        {renderHero()}
 
         <div className="videos-container">
           <header className="videos-section-header">
@@ -297,18 +307,7 @@ function Videos() {
   if (statusMessage && videos.length === 0) {
     return (
       <main className="videos-page">
-        <header className="videos-hero">
-          <nav className="videos-breadcrumbs" aria-label="Breadcrumb">
-            <Link to="/">{t("videos.breadcrumbs.home")}</Link>
-            <span aria-hidden="true">/</span>
-            <span>{t("videos.breadcrumbs.videos")}</span>
-          </nav>
-
-          <div className="videos-hero-content">
-            <h1>{t("videos.hero.title")}</h1>
-            <p>{t("videos.hero.subtitle")}</p>
-          </div>
-        </header>
+        {renderHero()}
 
         <div className="videos-container">
           <p className="status-message status-error">
@@ -323,21 +322,7 @@ function Videos() {
 
   return (
     <main className="videos-page">
-      <header className="videos-hero">
-        <nav className="videos-breadcrumbs" aria-label="Breadcrumb">
-          <Link to="/">{t("videos.breadcrumbs.home")}</Link>
-          <span aria-hidden="true">/</span>
-          <span>{t("videos.breadcrumbs.videos")}</span>
-        </nav>
-
-        <div className="videos-hero-content">
-          <h1>{t("videos.hero.title")}</h1>
-          <p>{t("videos.hero.subtitle")}</p>
-          <a className="videos-hero-cta" href="#videos-grid">
-            {t("videos.hero.cta")}
-          </a>
-        </div>
-      </header>
+      {renderHero()}
 
       <div className="videos-container">
         {statusMessage && (

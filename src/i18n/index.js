@@ -1,17 +1,59 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import en from "./locales/en.json";
-import am from "./locales/am.json";
+import commonEn from "./locales/common/en.json";
+import commonAm from "./locales/common/am.json";
+import homeEn from "./locales/home/en.json";
+import homeAm from "./locales/home/am.json";
+import historyEn from "./locales/history/en.json";
+import historyAm from "./locales/history/am.json";
+import teachingsEn from "./locales/teachings/en.json";
+import teachingsAm from "./locales/teachings/am.json";
+import videosEn from "./locales/videos/en.json";
+import videosAm from "./locales/videos/am.json";
+import holyEn from "./locales/holy/en.json";
+import holyAm from "./locales/holy/am.json";
+import aboutEn from "./locales/about/en.json";
+import aboutAm from "./locales/about/am.json";
+import notFoundEn from "./locales/notFound/en.json";
+import notFoundAm from "./locales/notFound/am.json";
+import eventsEn from "./locales/events/en.json";
+import eventsAm from "./locales/events/am.json";
 
 const defaultLocale = "am";
 const storedLocale = localStorage.getItem("locale");
 const activeLocale = storedLocale || defaultLocale;
 
-i18n.use(initReactI18next).init({
-  resources: {
-    en: { translation: en },
-    am: { translation: am }
+const translations = {
+  en: {
+    translation: {
+      ...commonEn,
+      ...homeEn,
+      ...historyEn,
+      ...teachingsEn,
+      ...videosEn,
+      ...holyEn,
+      ...aboutEn,
+      ...notFoundEn,
+      ...eventsEn
+    }
   },
+  am: {
+    translation: {
+      ...commonAm,
+      ...homeAm,
+      ...historyAm,
+      ...teachingsAm,
+      ...videosAm,
+      ...holyAm,
+      ...aboutAm,
+      ...notFoundAm,
+      ...eventsAm
+    }
+  }
+};
+
+i18n.use(initReactI18next).init({
+  resources: translations,
   lng: activeLocale,
   fallbackLng: defaultLocale,
   interpolation: {

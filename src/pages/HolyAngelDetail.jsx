@@ -95,7 +95,8 @@ import "../styles/holy/HolyAngelDetail.css";
 
 function HolyAngelDetail() {
   const { id } = useParams();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isAm = i18n.language?.startsWith("am");
 
   const angel = holyAngels.find((a) => a.id === id);
 
@@ -120,17 +121,41 @@ function HolyAngelDetail() {
     );
   }
 
-  const enName = t(`holyAngels.items.${angel.id}.name`, { lng: "en" });
-  const amName = t(`holyAngels.items.${angel.id}.amharicName`, { lng: "am" });
-  const shortDescription = t(
-    `holyAngels.items.${angel.id}.shortDescription`
-  );
+  const enName = t(`holyAngels.items.${angel.id}.name`, {
+    lng: "en",
+    defaultValue: ""
+  });
+  const amName = t(`holyAngels.items.${angel.id}.amharicName`, {
+    lng: "am",
+    defaultValue: ""
+  });
+  const shortDescription = t(`holyAngels.items.${angel.id}.shortDescription`, {
+    defaultValue: ""
+  });
+  const shortDescriptionFallback = isAm
+    ? t(`holyAngels.items.${angel.id}.shortDescription`, {
+        lng: "en",
+        defaultValue: ""
+      })
+    : t(`holyAngels.items.${angel.id}.shortDescription`, {
+        lng: "am",
+        defaultValue: ""
+      });
   const descriptionAm = t(`holyAngels.items.${angel.id}.descriptionAm`, {
-    lng: "am"
+    lng: "am",
+    defaultValue: ""
   });
   const descriptionEn = t(`holyAngels.items.${angel.id}.descriptionEn`, {
-    lng: "en"
+    lng: "en",
+    defaultValue: ""
   });
+  const displayName = (isAm ? amName : enName) || (isAm ? enName : amName);
+  const displayDescription = (isAm ? descriptionAm : descriptionEn) ||
+    (isAm ? descriptionEn : descriptionAm);
+  const displayShortDescription = shortDescription || shortDescriptionFallback;
+  const sectionTitle = isAm
+    ? t("holyAngelDetail.sections.amharic")
+    : t("holyAngelDetail.sections.english");
 
   return (
     <section className="holy-angel-detail-page">
@@ -140,19 +165,18 @@ function HolyAngelDetail() {
           <span aria-hidden="true">/</span>
           <Link to="/holy-angels">{t("holyAngelDetail.breadcrumbs.holyAngels")}</Link>
           <span aria-hidden="true">/</span>
-          <span>{amName || enName}</span>
+          <span>{displayName}</span>
         </nav>
 
         <div className="holy-angel-detail-hero-content">
-          <h1>{amName || enName}</h1>
-          {enName && <p className="holy-angel-detail-subtitle">{enName}</p>}
+          <h1>{displayName}</h1>
         </div>
       </header>
 
       <div className="holy-angel-detail-container">
         <div className="holy-angel-detail-body">
           <div className="holy-angel-detail-media">
-            <img src={angel.image} alt={enName || amName} />
+            <img src={angel.image} alt={displayName} />
 
             {angel.video && (
               <video controls poster={angel.image}>
@@ -164,19 +188,12 @@ function HolyAngelDetail() {
 
           <div className="holy-angel-detail-text">
             <h2>{t("holyAngelDetail.aboutTitle")}</h2>
-            {shortDescription && <p>{shortDescription}</p>}
+            {displayShortDescription && <p>{displayShortDescription}</p>}
 
-            {descriptionAm && (
+            {displayDescription && (
               <div className="holy-angel-detail-section">
-                <h3>{t("holyAngelDetail.sections.amharic")}</h3>
-                <p>{descriptionAm}</p>
-              </div>
-            )}
-
-            {descriptionEn && (
-              <div className="holy-angel-detail-section">
-                <h3>{t("holyAngelDetail.sections.english")}</h3>
-                <p>{descriptionEn}</p>
+                <h3>{sectionTitle}</h3>
+                <p>{displayDescription}</p>
               </div>
             )}
           </div>

@@ -7,6 +7,7 @@ import "../styles/Teachings.css";
 function Teachings() {
   useGlobalReveal(".teachings-page");
   const { t } = useTranslation();
+  const heroImage = "/kidase/teachings/teach.jpg";
 
   const teachingItems = [
     {
@@ -26,6 +27,15 @@ function Teachings() {
   return (
     <div className="teachings-page">
       <header className="teachings-hero" id="teachings-top">
+        <div
+          className="teachings-hero-media"
+          aria-hidden="true"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        >
+          <img src={heroImage} alt="" className="teachings-hero-image" />
+          <div className="teachings-hero-overlay" />
+        </div>
+
         <nav className="teachings-breadcrumbs" aria-label="Breadcrumb">
           <Link to="/">{t("teachings.breadcrumbs.home")}</Link>
           <span aria-hidden="true">/</span>

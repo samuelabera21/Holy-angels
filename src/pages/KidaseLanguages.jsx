@@ -7,17 +7,19 @@ import "../styles/Teachings.css";
 function KidaseLanguages() {
   useGlobalReveal(".kidase-page");
   const { t } = useTranslation();
+  const heroImage = "/kidase/teachings/kdase.jpg";
 
   return (
     <div className="kidase-page">
       <header className="kidase-hero" id="kidase-top">
-        <nav className="kidase-breadcrumbs" aria-label="Breadcrumb">
-          <Link to="/">{t("kidase.breadcrumbs.home")}</Link>
-          <span aria-hidden="true">/</span>
-          <Link to="/teachings">{t("kidase.breadcrumbs.teachings")}</Link>
-          <span aria-hidden="true">/</span>
-          <span>{t("kidase.breadcrumbs.kidase")}</span>
-        </nav>
+        <div
+          className="kidase-hero-media"
+          aria-hidden="true"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        >
+          <img src={heroImage} alt="" className="kidase-hero-image" />
+          <div className="kidase-hero-overlay" />
+        </div>
 
         <div className="kidase-hero-content">
           <h1>{t("kidase.hero.title")}</h1>

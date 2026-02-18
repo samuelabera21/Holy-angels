@@ -4,7 +4,7 @@
   justify-content: center;
   background: transparent;
   border: 1px solid transparent;
-  color: #eaeaea;
+  color: var(--nav-text);
   padding: 6px 8px;
   border-radius: 8px;
   cursor: pointer;
@@ -12,9 +12,14 @@
 }
 
 .back-button:hover {
-  color: #111;
-  background: #d4af37;
+  color: var(--accent-contrast);
+  background: var(--accent);
   transform: translateY(-1px);
+}
+
+.theme-light .back-button {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: var(--nav-border);
 }
 
 .back-button svg { display: block; }

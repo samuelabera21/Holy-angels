@@ -92,7 +92,8 @@ import { Link } from "react-router-dom";
 
 function Holy({ showSlider = true }) {
   const videoRefs = useRef([]);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isAm = i18n.language?.startsWith("am");
 
   /* 🔥 SLIDER STATE */
   const [current, setCurrent] = useState(0);
@@ -146,11 +147,33 @@ function Holy({ showSlider = true }) {
     });
   };
 
-  const getAngelText = (id) => ({
-    name: t(`holyAngels.items.${id}.name`, { lng: "en" }),
-    amharicName: t(`holyAngels.items.${id}.amharicName`, { lng: "am" }),
-    shortDescription: t(`holyAngels.items.${id}.shortDescription`)
-  });
+  const getAngelText = (id) => {
+    const amharicName = t(`holyAngels.items.${id}.amharicName`, {
+      defaultValue: ""
+    });
+    const englishName = t(`holyAngels.items.${id}.name`, { defaultValue: "" });
+    const fallbackName = isAm
+      ? t(`holyAngels.items.${id}.name`, { lng: "en", defaultValue: "" })
+      : t(`holyAngels.items.${id}.amharicName`, { lng: "am", defaultValue: "" });
+    const displayName = (isAm ? amharicName : englishName) || fallbackName;
+    const shortDescription = t(`holyAngels.items.${id}.shortDescription`, {
+      defaultValue: ""
+    });
+    const shortDescriptionFallback = isAm
+      ? t(`holyAngels.items.${id}.shortDescription`, {
+          lng: "en",
+          defaultValue: ""
+        })
+      : t(`holyAngels.items.${id}.shortDescription`, {
+          lng: "am",
+          defaultValue: ""
+        });
+
+    return {
+      displayName,
+      shortDescription: shortDescription || shortDescriptionFallback
+    };
+  };
 
   return (
     <section className="holy-page">
@@ -164,16 +187,15 @@ function Holy({ showSlider = true }) {
               <>
                 <img
                   src={currentAngel.image}
-                  alt={text.name || text.amharicName}
+                  alt={text.displayName}
                   className="slider-image"
                 />
 
                 <div className="overlay"></div>
 
                 <div className="slider-content">
-                  <h1>{text.name}</h1>
-                  <h2>{text.amharicName}</h2>
-                  <p>{text.shortDescription}</p>
+                  <h1>{text.displayName}</h1>
+                  {text.shortDescription && <p>{text.shortDescription}</p>}
                 </div>
               </>
             );
@@ -203,13 +225,12 @@ function Holy({ showSlider = true }) {
                 }`}
               >
                 <div className="holy-image">
-                  <img src={angel.image} alt={text.name || text.amharicName} />
+                  <img src={angel.image} alt={text.displayName} />
                 </div>
 
                 <div className="holy-content">
-                  <h3>{text.name}</h3>
-                  <h4>{text.amharicName}</h4>
-                  <p>{text.shortDescription}</p>
+                  <h3>{text.displayName}</h3>
+                  {text.shortDescription && <p>{text.shortDescription}</p>}
 
                   {angel.video && (
                     <video

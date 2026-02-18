@@ -120,11 +120,8 @@ import "../styles/reveal.css";
 import kidase from "../data/teachings/kidase";
 import "../styles/KidaseTypesSimple.css";
 
-const ITEMS_PER_PAGE = 6; // show six items per page
-
 function KidaseTypes() {
   const { lang } = useParams();
-  const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const { t } = useTranslation();
 
@@ -134,34 +131,30 @@ function KidaseTypes() {
   if (!languageData) return <p>{t("kidase.errors.languageNotFound")}</p>;
 
   const languageTitle = t(`kidase.languages.${lang}`);
+  const heroImage = "/kidase/geez/hero.png";
 
-  const totalPages = Math.ceil(
-    languageData.types.length / ITEMS_PER_PAGE
-  );
-
-  const start = (page - 1) * ITEMS_PER_PAGE;
-  const visibleTypes = languageData.types.slice(
-    start,
-    start + ITEMS_PER_PAGE
-  );
-
-  const filtered = visibleTypes.filter((type) => {
+  const filtered = languageData.types.filter((type) => {
     const typeTitle = t(`kidase.content.${lang}.types.${type.id}.title`);
     return typeTitle.toLowerCase().includes(query.toLowerCase());
   });
 
   return (
     <div className="kidase-simple-page">
-      <header className="kidase-types-hero">
-        <nav className="kidase-types-breadcrumbs" aria-label="Breadcrumb">
-          <Link to="/">{t("kidase.breadcrumbs.home")}</Link>
-          <span aria-hidden="true">/</span>
-          <Link to="/teachings">{t("kidase.breadcrumbs.teachings")}</Link>
-          <span aria-hidden="true">/</span>
-          <Link to="/teachings/kidase">{t("kidase.breadcrumbs.kidase")}</Link>
-          <span aria-hidden="true">/</span>
-          <span>{languageTitle}</span>
-        </nav>
+      <header className="kidase-types-hero kidase-types-hero--image">
+        {heroImage && (
+          <div
+            className="kidase-types-hero-media"
+            aria-hidden="true"
+            style={{ backgroundImage: `url(${heroImage})` }}
+          >
+            <img
+              src={heroImage}
+              alt=""
+              className="kidase-types-hero-image"
+            />
+            <div className="kidase-types-hero-overlay" />
+          </div>
+        )}
 
         <div className="kidase-types-hero-content">
           <h1>
@@ -211,31 +204,6 @@ function KidaseTypes() {
             );
           })}
         </div>
-
-        {totalPages > 1 && (
-          <div className="kidase-pagination">
-            <button
-              disabled={page === 1}
-              onClick={() => setPage((p) => p - 1)}
-            >
-              {t("kidase.pagination.previous")}
-            </button>
-
-            <span>
-              {t("kidase.pagination.pageOf", {
-                page,
-                total: totalPages
-              })}
-            </span>
-
-            <button
-              disabled={page === totalPages}
-              onClick={() => setPage((p) => p + 1)}
-            >
-              {t("kidase.pagination.next")}
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );

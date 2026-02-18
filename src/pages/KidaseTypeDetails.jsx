@@ -86,6 +86,7 @@ function KidaseTypeDetails() {
 
   const languageTitle = t(`kidase.languages.${lang}`);
   const typeTitle = t(`kidase.content.${lang}.types.${typeId}.title`);
+  const heroImage = "/kidase/geez/hero.png";
 
   const totalPages = Math.ceil(type.slides.length / ITEMS_PER_PAGE);
   const start = (page - 1) * ITEMS_PER_PAGE;
@@ -93,7 +94,20 @@ function KidaseTypeDetails() {
 
   return (
     <div className="kidase-simple-page">
-      <header className="kidase-types-hero">
+      <header className="kidase-types-hero kidase-types-hero--image">
+        <div
+          className="kidase-types-hero-media"
+          aria-hidden="true"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        >
+          <img
+            src={heroImage}
+            alt=""
+            className="kidase-types-hero-image"
+          />
+          <div className="kidase-types-hero-overlay" />
+        </div>
+
         <nav className="kidase-types-breadcrumbs" aria-label="Breadcrumb">
           <Link to="/">{t("kidase.breadcrumbs.home")}</Link>
           <span aria-hidden="true">/</span>

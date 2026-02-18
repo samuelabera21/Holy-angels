@@ -66,6 +66,21 @@ function TeachingDetails() {
   const [playingId, setPlayingId] = useState(null);
   const [page, setPage] = useState(1);
 
+  if (id === "wereb") {
+    return (
+      <div className="wereb-placeholder-page">
+        <div className="wereb-placeholder-card">
+          <div className="wereb-placeholder-header">
+            <h1 className="wereb-placeholder-title">የወረብ ትምህርት</h1>
+            <p className="wereb-placeholder-subtitle">በቅርቡ ዝርዝር ይዘት ይቀርባል</p>
+          </div>
+          <img src="/wereb/wereb.jpg" alt="Wereb" className="wereb-placeholder-image" />
+          <p className="wereb-placeholder-text">የ ወረብ ትምህርት በቅርቡ ይጠብቁ</p>
+        </div>
+      </div>
+    );
+  }
+
   const teaching = id === "kidase" ? kidase : null;
   if (!teaching) {
     return <p>{t("teachings.details.notFound")}</p>;
